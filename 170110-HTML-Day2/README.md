@@ -10,7 +10,7 @@
 
 ### 나무위키 공통 스타일
 
-```html
+```css
 html {
   font-size: 16px;
 }
