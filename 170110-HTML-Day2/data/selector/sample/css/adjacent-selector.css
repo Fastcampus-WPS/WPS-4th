@@ -1,0 +1,8 @@
+h1 + p {
+  color: red;
+  font-weight: bold;
+}
+
+p + li {
+  color: blue;
+}
