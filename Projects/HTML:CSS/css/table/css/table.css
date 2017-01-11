@@ -1,0 +1,16 @@
+table {
+  margin-bottom: 20px;
+}
+#table1 {
+  border-spacing: 5px;
+  empty-cells: hide;
+}
+#table2 {
+  width: 100%;
+  border-collapse: collapse;
+  empty-cells: hide;
+  table-layout: fixed;
+}
+tr, td {
+  border: 1px solid black;
+}

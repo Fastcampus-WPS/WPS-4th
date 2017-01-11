@@ -1,0 +1,7 @@
+h3 + p {
+  color: red;
+}
+
+ul > p + li {
+  color: blue;
+}

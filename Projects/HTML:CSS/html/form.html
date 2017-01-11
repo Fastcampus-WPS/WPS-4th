@@ -1,0 +1,141 @@
+<!-- html:5<tab> -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HTML - Form</title>
+  <style media="screen">
+    body {
+      padding-bottom: 300px;
+    }
+  </style>
+</head>
+<body>
+  <!-- form -->
+  <h3>form</h3>
+  <h4>기본 form태그</h4>
+  <form action="">
+    <label for="username">ID</label>
+    <input type="text" name="username">
+  </form>
+  <hr>
+
+  <!-- input의 type들 -->
+  <h3>input의 type들</h3>
+  <form action="">
+    <input type="text" name="username"><br>
+    <input type="password" name="password"><br>
+    <input type="radio" name="radio"><br>
+    <input type="checkbox" name="checkbox"><br>
+    <input type="button"><br>
+    <input type="file" name="file"><br>
+    <input type="submit"><br>
+    <input type="reset"><br>
+    <input type="hidden" name="hidden-key" value="hidden-value"><br>
+  </form>
+  <hr>
+
+  <!-- 왼쪽 디렉토리 구조 나타내기 (Atom 단축키) -->
+  <!-- Cmd + \ or Ctrl + \ -->
+  <h3>input의 속성들</h3>
+  <form action="">
+    <input type="text" value="disabled" disabled>
+    <input type="text" value="readonly" readonly>
+    <input type="text" required>
+    <input type="text" placeholder="공백은 안됩니다">
+    <input type="text" size="3">
+    <input type="text" maxlength="10">
+    <input type="checkbox" checked="checked">
+    <input type="radio" name="agree" checked="checked">
+    <input type="radio" name="agree">
+    <input type="radio" name="agree">
+    <input type="submit" value="전송">
+  </form>
+
+  <!-- label -->
+  <h3>label</h3>
+  <div>
+    <!-- label{ID}>input -->
+    <label>ID<input type="text"></label>
+
+    <!-- label[for=username]+input#username -->
+    <label for="username">ID</label>
+    <input type="text" id="username">
+
+    <label>ID</label>
+    <input type="text">
+  </div>
+
+  <!-- 안쪽에 쓰는 방식 -->
+  <div>
+    <label>Check <input type="checkbox"></label>
+
+    <!-- label과 input을 별개로 사용하는 방식 -->
+    <label for="cb1">Check</label>
+    <input type="checkbox" id="cb1">
+
+    <!-- for에 id값을 맞추지 않았을 경우 -->
+    <label>Check</label>
+    <input type="checkbox">
+  </div>
+  <hr>
+
+  <!-- select -->
+  <h3>select</h3>
+  <select name="number" id="select-id">
+    <!-- option[value=$]*4 -->
+    <option value="1">First</option>
+    <option value="2">Second</option>
+    <option value="3">Third</option>
+    <option value="4">Fourth</option>
+  </select>
+
+  <!-- select[multiple=multiple]>option[value]*3 -->
+  <select name="" id="" multiple>
+    <option value="apple">사과</option>
+    <option value="banana">바나나</option>
+    <option value="orange">오렌지</option>
+  </select>
+
+
+  <!-- select>(optgroup[label]>option*3)*2 -->
+  <select name="" id="">
+    <optgroup label="Fruits">
+      <option value="apple">Apple</option>
+      <option value="banana">Banana</option>
+      <option value="orange">Orange</option>
+    </optgroup>
+    <optgroup label="Colors">
+      <option value="red">Red</option>
+      <option value="blue">Blue</option>
+      <option value="green">Green</option>
+    </optgroup>
+  </select>
+  <hr>
+
+  <!-- button -->
+  <h3>button</h3>
+  <button type="submit">Submit type button</button>
+  <button type="reset">Reset type button</button>
+  <button type="button">Button type button</button>
+  <hr>
+
+  <!-- fieldset -->
+  <!-- fieldset>legend{Login}+label{username : }>input^label{password : }>input[type=password] -->
+  <h3>fieldset</h3>
+  <fieldset>
+    <legend>Login</legend>
+    <!-- label{username : }>input^label{password : }>input[type=password] -->
+    <label for="">username : <input type="text"></label>
+    <label for="">password : <input type="password"></label>
+    <button type="submit">Login</button>
+  </fieldset>
+
+
+  <input type="text" wps="4th">
+
+
+</body>
+</html>

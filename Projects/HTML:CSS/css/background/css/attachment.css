@@ -1,0 +1,20 @@
+#attachment {
+  position: relative;
+  left: 30px;
+  top: 30px;
+  width: 400px;
+  height: 400px;
+  border: 1px solid black;
+  overflow-y: scroll;
+  background-repeat: repeat;
+  /*background-image: url(../image/001.png);*/
+  background-attachment: local;
+  background-attachment: fixed;
+
+  /*배경을 가운데놓고 고정하고 싶을 경우*/
+  background-position: center center;
+  background-attachment: scroll;
+
+  /*background-attachment: scroll;*/
+  /*background-attachment: fixed;*/
+}

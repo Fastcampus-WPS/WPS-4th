@@ -1,0 +1,234 @@
+<!-- html:5<tab> -->
+<!-- 내가 이런 주석을 달고싶다 -->
+<!-- 처음으로 문서를 작성했습니다
+여러 주석을 답니다 -->
+<!-- 주석은 Cmd+/ 또는 Ctrl+/입니다 -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    body {
+      padding-bottom: 300px;
+    }
+    /* table의 border(외곽선)를 나타냅니다 */
+    table {
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    #col1 {
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <!-- pre태그와 일반 태그에서의 공백 차이 -->
+  <h3>pre태그와 일반 태그의 차이</h3>
+  <pre>
+    def pretag_test():
+      val = 'pretag'
+  </pre>
+  <p>
+    def pretag_test():
+      val = 'pretag'
+  </p>
+  <hr>
+
+  <!-- 줄바꿈 없는 텍스트 태그 -->
+  <h3>줄바꿈 없는 인라인 텍스트 태그</h3>
+  <p>
+    <strong>강조할 텍스트</strong>
+    <span>일반 텍스트</span>
+    <b>굵게 표시할 텍스트</b>
+  </p>
+
+  <p>
+    <em>강조할 텍스트</em>
+    <span>일반 텍스트</span>
+    <mark> 형광펜 효과</mark>
+    <i>기울여 표시할 텍스트</i>
+  </p>
+  <hr>
+
+  <!-- 목록 -->
+  <!-- Ordered List -->
+  <h3>목록</h3>
+
+  <h5>Ordered List</h5>
+  <ol type="A" start="7" reversed>
+    <li>항목</li>
+    <li>항목</li>
+    <li>항목</li>
+    <li>항목</li>
+    <li>항목</li>
+  </ol>
+
+  <!-- ul>li*5 -->
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+
+  <!-- ul>li{항목}*5 -->
+  <ul>
+    <li>항목</li>
+    <li>항목</li>
+    <li>항목</li>
+    <li>항목</li>
+    <li>항목</li>
+  </ul>
+
+  <!-- ul>li{항목$}*5 -->
+  <ul>
+    <li>항목1</li>
+    <li>항목2</li>
+    <li>항목3</li>
+    <li>항목4</li>
+    <li>항목5</li>
+  </ul>
+
+  <!-- dl>dt+dd*2+dt+dd*2 -->
+  <dl>
+    <dt></dt>
+    <dd></dd>
+    <dd></dd>
+    <dt></dt>
+    <dd></dd>
+    <dd></dd>
+  </dl>
+
+  <!-- dl>dt{HTML}+dd{HTML}+dd{웹}+dt{CSS}+dd{CSS}+dd{HTML형태} -->
+  <dl>
+    <dt>HTML</dt>
+    <dd>HTML</dd>
+    <dd>웹</dd>
+    <dt>CSS</dt>
+    <dd>CSS</dd>
+    <dd>HTML형태</dd>
+  </dl>
+  <hr>
+
+  <!-- table -->
+  <h3>테이블</h3>
+  <!--
+    > 는 하위레벨
+    + 는 같은레벨의 요소를 지정
+  -->
+
+  <!-- table>tr>th*3 -->
+  <table>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </table>
+
+  <!-- table>(tr>th*3)+(tr>td*3)*2 -->
+  <!-- table>tr>th*3^(tr>td*3)*2 -->
+  <table>
+    <tr>
+      <th>이름</th>
+      <th>나이</th>
+      <th>점수</th>
+    </tr>
+    <tr>
+      <td>철수</td>
+      <td>23세</td>
+      <td>70점</td>
+    </tr>
+    <tr>
+      <td>영희</td>
+      <td>21세</td>
+      <td>89점</td>
+    </tr>
+  </table>
+  <hr>
+
+  <!-- colspan, rowspan -->
+  <h3>colspan, rowspan</h3>
+  <!-- table>(tr>th*5)+(tr>td*5)*2+(tr>td[colspan=3]+td*2) -->
+  <table>
+    <colgroup id="col1">
+      <col></col>
+      <col></col>
+      <col></col>
+    </colgroup>
+    <colgroup id="col2">
+      <col></col>
+      <col></col>
+    </colgroup>
+    <tr>
+      <th>이름</th>
+      <th>나이</th>
+      <th>성별</th>
+      <th>100M달리기</th>
+      <th>윗몸일으키기</th>
+    </tr>
+    <tr>
+      <td>홍길동</td>
+      <td>22세</td>
+      <td>남</td>
+      <td>15.25</td>
+      <td>29</td>
+    </tr>
+    <tr>
+      <td>황진이</td>
+      <td>20세</td>
+      <td>여</td>
+      <td>16.12</td>
+      <td>41</td>
+    </tr>
+    <tr>
+      <td colspan="3">참가자 평균</td>
+      <td>15.7</td>
+      <td>35</td>
+    </tr>
+  </table>
+  <hr>
+
+  <!-- table header, body, footer -->
+  <h3>table header, body, footer</h3>
+
+  <!-- table>(thead>tr>th*4)+(tbody>(tr>td*4)*2)+(tfoot>tr>td[colspan=3]+td) -->
+  <table>
+    <thead>
+      <tr>
+        <th>상품명</th>
+        <th>제조사</th>
+        <th>제조일자</th>
+        <th>가격</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>컴퓨터</td>
+        <td></td>
+        <td></td>
+        <td>100</td>
+      </tr>
+      <tr>
+        <td>마우스</td>
+        <td></td>
+        <td></td>
+        <td>5</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">합계</td>
+        <td>105</td>
+      </tr>
+    </tfoot>
+  </table>
+  <hr>
+</body>
+</html>

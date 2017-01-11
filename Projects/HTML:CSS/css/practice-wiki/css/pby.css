@@ -1,0 +1,54 @@
+html {
+  font-size: 16px;
+}
+body {
+  font-size: 0.9rem;
+  color: #373a3c;
+  line-height: 1.5;
+}
+a {
+  text-decoration: none;
+  color: #0275d8;
+}
+blockquote {
+  margin: 0;
+  padding: 10px;
+  border: 2px dashed #ccc;
+  border-left: 5px solid #71bc6d;
+}
+
+.modified-date {
+  text-align: right;
+}
+
+.wiki-link {
+
+}
+.wiki-link > .img-arrow {
+  float: left;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.wiki-table {
+  width: 600px;
+  border: 2px solid #b38b6e;
+  border-collapse: collapse;
+  text-align: center;
+}
+.wiki-table tr, td {
+  border: 1px solid #ddd;
+}
+.wiki-table td {
+  padding: 10px;
+}
+.wiki-table .td-image {
+  background-color: white;
+}
+.wiki-table img {
+  max-width: 100%;
+}
+.wiki-table .wiki-table-col-1 {
+  background-color: #b38b6e;
+}

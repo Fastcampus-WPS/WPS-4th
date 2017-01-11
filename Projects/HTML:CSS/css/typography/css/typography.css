@@ -1,0 +1,17 @@
+#color-container {
+  background-color: #999999;
+}
+p#color {
+  color: #939393;
+  color: rgb(138, 200, 122);
+  color: rgba(200, 100, 100, 1);
+}
+
+#line-height {
+  line-height: 1.5;
+}
+
+#align {
+  text-align: justify;
+  line-height: 1.5
+}

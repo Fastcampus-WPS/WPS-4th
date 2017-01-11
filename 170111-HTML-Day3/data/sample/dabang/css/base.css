@@ -1,0 +1,39 @@
+html {
+  font-size: 13px;
+  box-sizing: border-box;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+ul, ol {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: rgb(2, 117, 216);
+}
+.btn {
+  display: inline-block;
+  padding: 0 13px;
+  background-image: none;
+  margin-bottom: 0;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.53856154;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  transition: all .1s ease;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

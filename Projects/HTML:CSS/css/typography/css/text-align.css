@@ -1,0 +1,16 @@
+p {
+  border: 1px solid black;
+}
+p.item1 {
+  white-space: nowrap;
+  overflow: hidden;
+}
+p.item2 {
+  white-space: pre;
+}
+p.item3 {
+  white-space: pre-line;
+}
+p.item4 {
+  white-space: pre-wrap;
+}

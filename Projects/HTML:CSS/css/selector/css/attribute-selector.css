@@ -1,0 +1,34 @@
+a:visited {
+  color: green;
+}
+a:active {
+  font-size: 40px;
+}
+
+a:hover {
+  font-size: 200px;
+}
+
+#attr1 a[href] {
+  color: red;
+}
+
+#attr2 a[type="ultimate"] {
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+}
+
+#attr3 a[class~="red"] {
+  background-color: red;
+}
+
+#attr4 a[class|="skill"] {
+  background-color: green;
+  color: white;
+}
+
+#attr5 a[class^="skill"] {
+  background-color: red;
+  color: white;
+}

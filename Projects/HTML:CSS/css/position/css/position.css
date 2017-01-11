@@ -1,0 +1,55 @@
+html, body {
+  padding: 0;
+  margin: 0;
+}
+/*div {
+  width: 400px;
+  height: 200px;
+  padding: 10px;
+  border: 1px solid black;
+  color: #fff;
+  background-color: rgba(50,50,50,0.8);
+}*/
+.relative1 {
+  position: relative;
+  top: 50px;
+  left: 50px;
+}
+.relative2 {
+  position: relative;
+  top: 100px;
+  left: 50px;
+}
+.absolute {
+  position: absolute;
+  width: 150px;
+  height: 60px;
+  background-color: red;
+  color: white;
+  bottom: 0;
+  right: 0;
+}
+
+.fixed {
+  position: fixed;
+  width: 100px;
+  height: 50px;
+  background-color: blue;
+  right: 10px;
+  bottom: 10px;
+}
+
+.center {
+  position: relative;
+  border: 1px solid black;
+  width: 600px;
+  height: 300px;
+  line-height: 400px;
+}
+.center > .center-inner {
+  display: inline-block;
+  background-color: red;
+  width: 200px;
+  height: 100px;
+  margin: 0 auto;
+}
