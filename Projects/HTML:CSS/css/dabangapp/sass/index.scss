@@ -1,0 +1,250 @@
+@import '_variables';
+
+#top-header {
+  height: 61px;
+  line-height: 61px;
+  padding: 0 10px;
+  border-bottom: 1px solid #ccc;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    > li {
+      float: left;
+    }
+  }
+
+  .header-logo {
+    float: left;
+    padding: {
+      left: 10px;
+      top: 18px;
+    };
+    margin: {
+      right: 18px;
+    };
+  }
+
+  > nav {
+    height: 100%;
+
+    > .nav-list {
+      height: 100%;
+
+      > li {
+        > img {
+          vertical-align: middle;
+        }
+      }
+
+      > .nav-pipeline {
+        color: #919191;
+        margin: 0 8px;
+      }
+    }
+
+    > ul#top-nav-left-list {
+      float: left;
+    }
+    > ul#top-nav-right-list {
+      float: right;
+
+      > li {
+        margin-left: 17px;
+
+        &.mgl-30 {
+          margin-left: 50px;
+        }
+        &.item-small {
+          font-size: 12px;
+        }
+
+        > a {
+          color: $color-a;
+          text-decoration: none;
+          display: inline-block;
+          height: 100%;
+
+          &:hover {
+            color: $color-a-hover;
+          }
+        }
+      }
+    }
+  }
+}
+
+#wrap {
+  > #index-search {
+    position: relative;
+    height: 678px;
+    background-image: url(../images/MainSearch-bg.jpg);
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-color: $color-bg-index-search;
+
+    > #index-search-image {
+      background-image: url(../images/MainSearch-img.png);
+      background-position: center top;
+      background-repeat: no-repeat;
+      height: 100%;
+    }
+    > #index-search-bottom {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 110px;
+      background-color: rgba(0,0,0,.6);
+
+      > #index-search-form {
+        width: 534px;
+        height: 50px;
+        margin: 0 auto;
+        margin-top: 30px;
+
+        > input {
+          float: left;
+          width: 434px;
+          height: 50px;
+          padding: 0 20px;
+          border: none;
+          font-size: 14px;
+          line-height: 50px;
+          border-top-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+          box-sizing: border-box;
+        }
+        > button {
+          width: 100px;
+          height: 50px;
+          border: 0;
+          font-size: 15px;
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+          cursor: pointer;
+          color: white;
+          background-color: $color-btn-search;
+          transition: all 0.5s;
+
+          &:hover {
+            background-color: $color-btn-search-hover;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 가로 960에 좌우 자동정렬 될 요소
+#theme-search {
+  width: 960px;
+  margin: 0 auto;
+
+  // 기본적으로 padding, margin값이 있기때문에 초기화시켜주고
+  // 리스트 블릿 스타일 없애줌
+  ul#theme-list {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    list-style-type: none;
+
+    // 자식요소가 모두 float속성을 가지므로
+    // :after가상선택자에 clear:both속성의 임의요소 삽입
+    &:after {
+      content: ' ';
+      display: block;
+      height: 0;
+      clear: both;
+    }
+
+    // 각 리스트 아이템이 정사각형태(300x300)를 갖고
+    // 서로 가로로 정렬되게 하기 위해 float속성 지정
+    // 만약에 border가 있을 경우에도 가로크기를 유지하기 위해 box-sizing속성 지정
+    // 다음줄과의 간격을 위해 margin-bottom설정
+    > li {
+      width: 300px;
+      height: 300px;
+      float: left;
+      box-sizing: border-box;
+      margin-bottom: 30px;
+
+      // 3n-1번째 아이템마다 좌우에 30px씩 여백을 주기 위해
+      // nth-child가상선택자 활용
+      &:nth-child(3n-1) {
+        background-color: red;
+        margin: auto 30px;
+      }
+
+      // li의 클래스명에 따라 자식 a요소의 자식 .bg요소의
+      // background-image속성을 바꿔줌
+      &.pet {
+        > a > .bg {
+          background-image: url(../images/pet.jpg);
+        }
+      }
+      &.guarantee {
+        > a > .bg {
+          background-image: url(../images/guarantee.jpg);
+        }
+      }
+
+      // a요소가 클릭할 전체 영역을 담당
+      // 내부에 bg, mask, theme-description을 가짐
+      // bg요소는 a요소에 hover속성이 주어질 시 확대되므로, 넘치는 부분을 가리기 위해 overflow속성 지정
+      // 원래 a요소는 inline속성이므로 세로값을 가지기 위해 display:block설정
+      // a요소를 기준으로 하는 position:absolute속성을 가진 자식요소가 있으므로 position:relative설정
+      > a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+
+        // a요소에 :hover속성이 주어질 경우
+        &:hover {
+          // a요소의 .bg자식 요소에 transform: scale을 사용해서 전체 크기를 늘림
+          & > .bg {
+            transform: scale(1.2);
+          }
+          // a요소의 .mask자식 요소의 rgba값을 조절 (좀 더 불투명하게)
+          & > .mask {
+            background-color: rgba(0,0,0,0.5);
+          }
+        }
+
+        // 백그라운드 이미지를 갖는 요소, 부모의 전체 사이즈를 가짐
+        // a요소에 hover속성이 주어질 경우 자연스럽게 scale변환하기위해 transition-duration설정
+        .bg {
+          width: 100%;
+          height: 100%;
+          transition-duration: 1s;
+        }
+        // 반투명 마스크를 갖는 요소, 위의 .bg요소 위에 겹치기 위해 position:absolute값을 가짐
+        .mask {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0,0,0,.4);
+        }
+        // 테마의 설명텍스트 요소
+        // 부모를 기준으로 가로/세로 가운데 위치하여야 하므로
+        // 가로정렬은 width:100%와 text-align:center를 사용
+        // 세로정렬은 top:0과 transform:translateY(-50%)를 사용
+        .theme-description {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          color: white;
+          text-align: center;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+    }
+  }
+}
