@@ -23,6 +23,10 @@
 
 `node -v`로는 에러가 나지만 `nodejs -v`로는 버전이 정상적으로 출력되면  
  `sudo ln -s /usr/bin/nodejs /usr/bin/node`입력  
+ 
+-
 
-이후 `node-sass` npm패키지 설치  
+**`node -v`가 정상적으로 작동하는걸 확인했다면**
+
+`node-sass` npm패키지 설치  
 `sudo npm install node-sass -g`
