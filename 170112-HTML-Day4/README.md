@@ -21,7 +21,7 @@
 에러가 난다면  
 `nodejs -v` 입력  
 
-버전이 정상적으로 출력되면  
+`node -v`로는 에러가 나지만 `nodejs -v`로는 버전이 정상적으로 출력되면  
  `sudo ln -s /usr/bin/nodejs /usr/bin/node`입력  
 
 이후 `node-sass` npm패키지 설치  
