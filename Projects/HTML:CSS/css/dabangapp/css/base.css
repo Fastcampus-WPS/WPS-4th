@@ -12,4 +12,11 @@ body {
   margin: 0;
 }
 
+.clearfix:after {
+  content: ' ';
+  display: block;
+  height: 0;
+  clear: both;
+}
+
 /*# sourceMappingURL=base.css.map */

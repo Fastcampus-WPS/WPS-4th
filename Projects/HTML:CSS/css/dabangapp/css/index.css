@@ -70,7 +70,7 @@
   color: #58b5d3;
 }
 
-#wrap > #index-search {
+#index-search {
   position: relative;
   height: 678px;
   background-image: url(../images/MainSearch-bg.jpg);
@@ -79,14 +79,14 @@
   background-color: #dbecf6;
 }
 
-#wrap > #index-search > #index-search-image {
+#index-search > #index-search-image {
   background-image: url(../images/MainSearch-img.png);
   background-position: center top;
   background-repeat: no-repeat;
   height: 100%;
 }
 
-#wrap > #index-search > #index-search-bottom {
+#index-search > #index-search-bottom {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -94,14 +94,14 @@
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-#wrap > #index-search > #index-search-bottom > #index-search-form {
+#index-search > #index-search-bottom > #index-search-form {
   width: 534px;
   height: 50px;
   margin: 0 auto;
   margin-top: 30px;
 }
 
-#wrap > #index-search > #index-search-bottom > #index-search-form > input {
+#index-search > #index-search-bottom > #index-search-form > input {
   float: left;
   width: 434px;
   height: 50px;
@@ -114,7 +114,7 @@
   box-sizing: border-box;
 }
 
-#wrap > #index-search > #index-search-bottom > #index-search-form > button {
+#index-search > #index-search-bottom > #index-search-form > button {
   width: 100px;
   height: 50px;
   border: 0;
@@ -127,7 +127,7 @@
   transition: all 0.5s;
 }
 
-#wrap > #index-search > #index-search-bottom > #index-search-form > button:hover {
+#index-search > #index-search-bottom > #index-search-form > button:hover {
   background-color: #2074c8;
 }
 
@@ -211,6 +211,54 @@
   text-align: center;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.banner {
+  height: 100px;
+  background-color: black;
+  margin-bottom: 50px;
+}
+
+.banner .banner-image {
+  height: 100%;
+  background-position: center top;
+  background-repeat: no-repeat;
+}
+
+.banner .banner-image.img1 {
+  background-image: url(../images/banner.png);
+}
+
+#wrap > .sitemap {
+  width: 960px;
+  margin: 0 auto;
+}
+
+#wrap > .sitemap .sitemap-col {
+  width: 192px;
+  float: left;
+}
+
+#wrap > .sitemap .sitemap-col > ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+#wrap > .sitemap .sitemap-col > ul > li {
+  line-height: 1.9;
+}
+
+#wrap > .sitemap .sitemap-col > ul > li.title {
+  font-size: 1.21rem;
+  font-weight: 700;
+  color: #585858;
+}
+
+#wrap > .sitemap .sitemap-col > ul > li > a {
+  color: #585858;
+  text-decoration: none;
 }
 
 /*# sourceMappingURL=index.css.map */

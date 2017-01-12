@@ -1,4 +1,5 @@
 @import '_variables';
+$full-width: 960px;
 
 #top-header {
   height: 61px;
@@ -76,61 +77,59 @@
   }
 }
 
-#wrap {
-  > #index-search {
-    position: relative;
-    height: 678px;
-    background-image: url(../images/MainSearch-bg.jpg);
+#index-search {
+  position: relative;
+  height: 678px;
+  background-image: url(../images/MainSearch-bg.jpg);
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-color: $color-bg-index-search;
+
+  > #index-search-image {
+    background-image: url(../images/MainSearch-img.png);
     background-position: center top;
     background-repeat: no-repeat;
-    background-color: $color-bg-index-search;
+    height: 100%;
+  }
+  > #index-search-bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 110px;
+    background-color: rgba(0,0,0,.6);
 
-    > #index-search-image {
-      background-image: url(../images/MainSearch-img.png);
-      background-position: center top;
-      background-repeat: no-repeat;
-      height: 100%;
-    }
-    > #index-search-bottom {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 110px;
-      background-color: rgba(0,0,0,.6);
+    > #index-search-form {
+      width: 534px;
+      height: 50px;
+      margin: 0 auto;
+      margin-top: 30px;
 
-      > #index-search-form {
-        width: 534px;
+      > input {
+        float: left;
+        width: 434px;
         height: 50px;
-        margin: 0 auto;
-        margin-top: 30px;
+        padding: 0 20px;
+        border: none;
+        font-size: 14px;
+        line-height: 50px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        box-sizing: border-box;
+      }
+      > button {
+        width: 100px;
+        height: 50px;
+        border: 0;
+        font-size: 15px;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        cursor: pointer;
+        color: white;
+        background-color: $color-btn-search;
+        transition: all 0.5s;
 
-        > input {
-          float: left;
-          width: 434px;
-          height: 50px;
-          padding: 0 20px;
-          border: none;
-          font-size: 14px;
-          line-height: 50px;
-          border-top-left-radius: 5px;
-          border-bottom-left-radius: 5px;
-          box-sizing: border-box;
-        }
-        > button {
-          width: 100px;
-          height: 50px;
-          border: 0;
-          font-size: 15px;
-          border-top-right-radius: 5px;
-          border-bottom-right-radius: 5px;
-          cursor: pointer;
-          color: white;
-          background-color: $color-btn-search;
-          transition: all 0.5s;
-
-          &:hover {
-            background-color: $color-btn-search-hover;
-          }
+        &:hover {
+          background-color: $color-btn-search-hover;
         }
       }
     }
@@ -243,6 +242,62 @@
           text-align: center;
           top: 50%;
           transform: translateY(-50%);
+        }
+      }
+    }
+  }
+}
+
+// 가로 전체를 차지하며, block요소이므로 width값은 필요없음
+// 배너이미지는 자식 div요소의 background-image로 설정
+// 배너이미지의 높이가 100px이므로 height값 지정
+.banner {
+  height: 100px;
+  background-color: black;
+  margin-bottom: 50px;
+
+  // background-image로 배너이미지를 갖는다
+  // 가운데 정렬 및 반복없음 설정
+  .banner-image {
+    height: 100%;
+    background-position: center top;
+    background-repeat: no-repeat;
+
+    // 가진 클래스명에 따라 이미지 url변경
+    &.img1 {
+      background-image: url(../images/banner.png);
+    }
+  }
+}
+
+#wrap > .sitemap {
+  width: $full-width;
+  margin: 0 auto;
+
+  // 5칸의 col을 가지며, 계산은 Sass에서 자동으로 하게 함
+  // 가로정렬을 위해 float:left 설정
+  .sitemap-col {
+    width: ($full-width / 5);
+    float: left;
+
+    > ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      margin-bottom: 20px;
+
+      > li {
+        line-height: 1.9;
+
+        &.title {
+          font-size: 1.21rem;
+          font-weight: 700;
+          color: #585858;
+        }
+
+        > a {
+          color: #585858;
+          text-decoration: none;
         }
       }
     }
