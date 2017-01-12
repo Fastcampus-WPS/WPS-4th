@@ -1,5 +1,7 @@
 @import '_variables';
 $full-width: 960px;
+$common-border: 1px solid #d1d1d1;
+$color-bg-footer: #2a2a2a;
 
 #top-header {
   height: 61px;
@@ -299,6 +301,74 @@ $full-width: 960px;
           color: #585858;
           text-decoration: none;
         }
+      }
+    }
+  }
+}
+
+nav#index-bottom-nav {
+  border-top: $common-border;
+  border-bottom: $common-border;
+
+  > ul {
+    width: 960px;
+    margin: 0 auto;
+    padding: 0;
+    list-style-type: none;
+    border-left: $common-border;
+
+    > li {
+      float: left;
+      width: ($full-width / 7);
+      border-right: $common-border;
+      box-sizing: border-box;
+      padding: 10px 0;
+      text-align: center;
+
+      > a {
+        width: 100%;
+        text-decoration: none;
+        color: $color-a;
+
+        &.red {
+          color: red;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  background-color: $color-bg-footer;
+  height: 268px;
+  font-size: 11px;
+  line-height: 1.6;
+
+  .footer-content {
+    position: relative;
+    width: 960px;
+    height: 88px;
+    margin: 0 auto;
+    top: 50%;
+    transform: translateY(-50%);
+
+    img.footer-logo {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .footer-text {
+      position: relative;
+      left: 120px;
+      color: white;
+
+      ul {
+        position: relative;
+        display: inline-block;
+        vertical-align: bottom;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
       }
     }
   }
