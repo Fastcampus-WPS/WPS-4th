@@ -1,0 +1,60 @@
+.clearfix:after {
+  content: '';
+  display: block;
+  height: 0;
+  clear: both; }
+
+html, body {
+  margin: 0;
+  padding: 0; }
+
+ul, ol {
+  list-style-type: none;
+  padding: 0;
+  margin: 0; }
+
+#index-news {
+  width: 960px;
+  margin: 0 auto; }
+  #index-news ul.news-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none; }
+    #index-news ul.news-list li.news-item {
+      border: 1px solid blue;
+      box-sizing: border-box;
+      float: left;
+      width: 300px;
+      height: 300px;
+      margin-bottom: 30px; }
+      #index-news ul.news-list li.news-item:nth-child(3n-1) {
+        background-color: red;
+        margin: auto 30px; }
+
+#game-info {
+  width: 960px;
+  margin: 0 auto;
+  margin-bottom: 30px; }
+  #game-info ul.info-list li.info-item {
+    border: 1px solid blue;
+    box-sizing: border-box;
+    width: 475px;
+    height: 100px;
+    float: left; }
+    #game-info ul.info-list li.info-item:nth-child(1) {
+      margin-right: 10px; }
+
+#champion-rotation {
+  width: 960px;
+  margin: 0 auto; }
+  #champion-rotation ul.champion-list li.champion-item {
+    background-color: blue;
+    box-sizing: border-box;
+    float: left;
+    width: 87.27273px;
+    height: 87.27273px;
+    margin-right: 9.69697px; }
+    #champion-rotation ul.champion-list li.champion-item:nth-last-child(1) {
+      margin-right: 0; }
+
+/*# sourceMappingURL=index.nested.css.map */

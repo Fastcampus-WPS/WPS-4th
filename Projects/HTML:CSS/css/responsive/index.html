@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/index960.css">
+  <link rel="stylesheet" href="css/index414.css">
+  <title>Responsive web</title>
+</head>
+<body>
+  <div id="wrap">
+    <!--
+    #index-news
+      width960px
+      가로 가운데 정렬되도록 함
+
+    li각 요소는 300px
+      가운데 요소만 좌우에 30px씩 여백을 갖는다
+
+    !미디어쿼리 및 반응형 실습
+      max-width가 414px일때, news-item이 한줄 전체를 차지하도록 구현
+
+     -->
+    <div id="index-news" class="clearfix">
+      <ul class="news-list">
+        <li class="news-item"></li>
+        <li class="news-item"></li>
+        <li class="news-item"></li>
+        <li class="news-item"></li>
+        <li class="news-item"></li>
+        <li class="news-item"></li>
+      </ul>
+    </div>
+
+    <!--
+      index960에서
+      width값을 위의 index-news와 같은 값을 가지도록 설정
+    -->
+    <!--
+      각 리스트 아이템의 width는
+      전체 width(960) / 2 - 5px
+      중간 마진값은 위 결과에서 남는 값
+     -->
+    <div id="game-info" class="clearfix">
+      <ul class="info-list">
+        <li class="info-item"></li>
+        <li class="info-item"></li>
+      </ul>
+    </div>
+
+    <div id="champion-rotation" class="clearfix">
+      <ul class="champion-list" class="clearfix">
+        <li class="champion-item"></li>
+        <li class="champion-item"></li>
+        <li class="champion-item"></li>
+        <li class="champion-item"></li>
+        <li class="champion-item"></li>
+        <li class="champion-item"></li>
+        <li class="champion-item"></li>
+        <li class="champion-item"></li>
+        <li class="champion-item"></li>
+        <li class="champion-item"></li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>

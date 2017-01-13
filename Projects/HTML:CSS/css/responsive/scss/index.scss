@@ -1,0 +1,104 @@
+.clearfix:after {
+  content: '';
+  display: block;
+  height: 0;
+  clear: both;
+}
+html, body {
+  // 브라우저 전체 패딩/마진 초기화
+  margin: 0;
+  padding: 0;
+}
+ul, ol {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+#index-news {
+  width: 960px;
+  // 세로마진0, 가로양쪽 마진은 자동설정
+  margin: 0 auto;
+
+  ul.news-list {
+    // 마진, 패딩값 초기화
+    margin: 0;
+    padding: 0;
+
+    // 리스트에서 블릿 없애줌
+    list-style-type: none;
+
+    // 각 리스트 아이템이 차지하는 영역을 확인하기 위해 border설정
+    // 각 아이템이 가로로 정렬되게 하기 위해 float:left설정
+    // block속성이 없어졌으므로, width, height값을 수동으로 지정
+    // border가 존재할때도 원래의 width값을 유지하기 위해 box-sizing지정
+    li.news-item {
+      border: 1px solid blue;
+      box-sizing: border-box;
+      float: left;
+      width: 300px;
+      height: 300px;
+      margin-bottom: 30px;
+
+      // 3n-1번째 자식요소마다 설정
+      &:nth-child(3n-1) {
+        background-color: red;
+        margin: auto 30px;
+      }
+    }
+  }
+}
+
+#game-info {
+  width: 960px;
+  margin: 0 auto;
+  margin-bottom: 30px;
+
+  // 한 칸이 50%를 차지하도록 함
+  // 각각의 너비는 전체(960px)을 2로 나눈 후 5px을 더 뺀 값
+  ul.info-list {
+    li.info-item {
+      border: 1px solid blue;
+      box-sizing: border-box;
+      width: 960px / 2 - 5px;
+      height: 100px;
+      float: left;
+
+      // 첫 번째 아이템만 margin-right:10px을 지정
+      &:nth-child(1) {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+#champion-rotation {
+  width: 960px;
+  margin: 0 auto;
+
+  // 각 아이템의 너비는 전체너비 / 11
+  // 아이템이 10개이므로, 여백은 총 9개
+
+  // 전체너비에서 여백이 차지할 수 있는 공간은
+  //   전체너비 / 11 - 전체너비 / 11 * 10 이므로
+  //   전체너비 / 11
+  //
+  // 남은 공간을 여백개수(9개)로 나누어 할당
+  //   여백 : 전체너비 / 11 / 9
+  ul.champion-list {
+    li.champion-item {
+      $icon-size: 960px / 11;
+      background-color: blue;
+      box-sizing: border-box;
+      float: left;
+      width: $icon-size;
+      height: $icon-size;
+      margin-right: $icon-size / 9;
+
+      // 마지막 요소는 여백을 갖지않음
+      &:nth-last-child(1) {
+        margin-right: 0;
+      }
+    }
+  }
+}

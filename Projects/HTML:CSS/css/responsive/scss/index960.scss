@@ -1,0 +1,44 @@
+@media screen and (max-width: 959px) {
+  #index-news {
+    width: 100%;
+
+    ul.news-list {
+      li.news-item {
+        width: 50%;
+
+        &:nth-child(3n-1) {
+          margin: 0;
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
+  #game-info {
+    $margin-value: 1%;
+    width: 100%;
+    ul.info-list {
+      li.info-item {
+        width: (100% - $margin-value) / 2;
+
+        &:nth-child(1) {
+          margin-right: $margin-value;
+        }
+      }
+    }
+  }
+  #champion-rotation {
+    $item-length: 100% / 11;
+    width: 100%;
+    ul.champion-list {
+      li.champion-item {
+        width: $item-length;
+        height: 50px;
+        margin-right: $item-length / 9;
+
+        &:nth-last-child(1) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
