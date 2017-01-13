@@ -27,13 +27,29 @@
     }
   }
   #champion-rotation {
-    $item-length: 100% / 11;
+    // 이 블럭요소가 양쪽에 기기의 가로길이 기준으로 1%의 패딩을 갖도록 함
+    $padding-value: 1vw;
+    // 패딩을 제외하고 실제로 콘텐츠가 존재할 수 있는 영역은 가로길이 기준으로 98%(98vw)
+    $remain-width: (100vw - $padding-value * 2);
+    padding: $padding-value;
+    box-sizing: border-box;
+
+    // 전체 가로너비중에 아이템 간의 간격으로 사용할 부분
+    //   remain-width의 5% (*0.05)
+    $total-margin-value: $remain-width * 0.05;
+    // 각각의 아이템(총10개)가 차지할 너비
+    //   (남은 너비 - 여백으로 사용할 너비) / 총 아이템 개수
+    $item-length: ($remain-width - $total-margin-value) / 10;
+    // 각각의 여백이 차지할 너비
+    //   아이템 간 간격으로 사용할 부분($total-margin-value)를 여백개수(9개)로 나눔
+    $each-margin-value: $total-margin-value / 9;
+
     width: 100%;
     ul.champion-list {
       li.champion-item {
         width: $item-length;
-        height: 50px;
-        margin-right: $item-length / 9;
+        height: $item-length;
+        margin-right: $each-margin-value;
 
         &:nth-last-child(1) {
           margin-right: 0;

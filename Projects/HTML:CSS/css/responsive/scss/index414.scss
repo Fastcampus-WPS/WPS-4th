@@ -6,4 +6,34 @@
       }
     }
   }
+  #game-info {
+    ul.info-list {
+      li.info-item {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 5%;
+      }
+    }
+  }
+  #champion-rotation {
+    $padding-value: 1vw;
+    $remain-width: (100vw - $padding-value);
+
+    $total-margin-value: $remain-width * 0.05;
+    $item-length: ($remain-width - $total-margin-value) / 5;
+    $each-margin-value: $total-margin-value / 8;
+
+    ul.champion-list {
+      li.champion-item {
+        width: $item-length;
+        height: $item-length;
+        margin-right: $each-margin-value;
+        margin-bottom: $each-margin-value;
+
+        &:nth-child(5n) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
 }

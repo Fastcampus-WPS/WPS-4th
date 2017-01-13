@@ -1,5 +1,16 @@
 @media screen and (max-width: 414px) {
   #index-news ul.news-list li.news-item {
-    width: 100%; } }
+    width: 100%; }
+  #game-info ul.info-list li.info-item {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 5%; }
+  #champion-rotation ul.champion-list li.champion-item {
+    width: 18.81vw;
+    height: 18.81vw;
+    margin-right: 0.61875vw;
+    margin-bottom: 0.61875vw; }
+    #champion-rotation ul.champion-list li.champion-item:nth-child(5n) {
+      margin-right: 0; } }
 
 /*# sourceMappingURL=index414.nested.css.map */
