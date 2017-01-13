@@ -178,28 +178,29 @@
           color: #585858;
           text-decoration: none; }
 
-nav#index-bottom-nav {
+nav#index-bottom-nav2 {
   border-top: 1px solid #d1d1d1;
   border-bottom: 1px solid #d1d1d1; }
-  nav#index-bottom-nav > ul {
+  nav#index-bottom-nav2 > ul {
     width: 960px;
     margin: 0 auto;
-    padding: 0;
-    list-style-type: none;
     border-left: 1px solid #d1d1d1; }
-    nav#index-bottom-nav > ul > li {
+    nav#index-bottom-nav2 > ul > li {
       float: left;
       width: 137.14286px;
       border-right: 1px solid #d1d1d1;
-      box-sizing: border-box;
-      padding: 10px 0;
-      text-align: center; }
-      nav#index-bottom-nav > ul > li > a {
+      box-sizing: border-box; }
+      nav#index-bottom-nav2 > ul > li:hover {
+        background-color: #e7e7e7; }
+      nav#index-bottom-nav2 > ul > li > a {
+        display: inline-block;
         width: 100%;
+        height: 49px;
+        line-height: 49px;
+        color: #585858;
         text-decoration: none;
-        color: #585858; }
-        nav#index-bottom-nav > ul > li > a.red {
-          color: red; }
+        text-align: center;
+        font-size: 13px; }
 
 footer {
   background-color: #2a2a2a;
@@ -207,26 +208,23 @@ footer {
   font-size: 11px;
   line-height: 1.6; }
   footer .footer-content {
-    position: relative;
     width: 960px;
-    height: 88px;
+    height: 100%;
     margin: 0 auto;
-    top: 50%;
-    transform: translateY(-50%); }
-    footer .footer-content img.footer-logo {
-      position: absolute;
-      left: 0;
-      top: 0; }
-    footer .footer-content .footer-text {
+    color: #919191; }
+    footer .footer-content > .footer-ci-image {
+      margin-top: 90px; }
+    footer .footer-content > .content-list-container {
       position: relative;
-      left: 120px;
-      color: white; }
-      footer .footer-content .footer-text ul {
-        position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      float: right; }
+      footer .footer-content > .content-list-container ul {
         display: inline-block;
         vertical-align: bottom;
-        list-style-type: none;
-        padding: 0;
-        margin: 0; }
+        margin-left: 10px; }
+        footer .footer-content > .content-list-container ul > li.title {
+          color: white;
+          font-size: 14px; }
 
 /*# sourceMappingURL=index.nested.css.map */

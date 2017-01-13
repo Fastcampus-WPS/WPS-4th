@@ -1,7 +1,4 @@
 @import '_variables';
-$full-width: 960px;
-$common-border: 1px solid #d1d1d1;
-$color-bg-footer: #2a2a2a;
 
 #top-header {
   height: 61px;
@@ -306,33 +303,45 @@ $color-bg-footer: #2a2a2a;
   }
 }
 
-nav#index-bottom-nav {
+// 인덱스 페이지 하단 네비게이션 메뉴
+nav#index-bottom-nav2 {
+  // 메뉴 상, 하단에 1px 외곽선
   border-top: $common-border;
   border-bottom: $common-border;
 
+  // 전체 가로중 메뉴가 차지하는 영역은 가운데 960px만
+  // 리스트의 왼쪽에 1px border설정
   > ul {
-    width: 960px;
+    width: $full-width;
     margin: 0 auto;
-    padding: 0;
-    list-style-type: none;
     border-left: $common-border;
 
+    // 각 리스트아이템이 가로로 정렬되도록 float:left설정
+    // width값은 메뉴의 개수만큼(7개)으로 나눈 값
+    // 각 리스트아이템의 우측에 border설정
+    // border값이 각각의 크기에 영향주지 않도록 box-sizing설정
     > li {
       float: left;
-      width: ($full-width / 7);
+      width: $full-width / 7;
       border-right: $common-border;
       box-sizing: border-box;
-      padding: 10px 0;
-      text-align: center;
 
+      // 리스트아이템에 마우스 올릴 경우 배경색 변경
+      &:hover {
+        background-color: #e7e7e7;
+      }
+
+      // 가로를 꽉 채우기 위해 display:inline-block설정
+      // 높이 49px에서 텍스트가 수직가운데 정렬되게 하기위해 line-height값 설정
       > a {
+        display: inline-block;
         width: 100%;
-        text-decoration: none;
+        height: 49px;
+        line-height: 49px;
         color: $color-a;
-
-        &.red {
-          color: red;
-        }
+        text-decoration: none;
+        text-align: center;
+        font-size: 13px;
       }
     }
   }
@@ -344,32 +353,72 @@ footer {
   font-size: 11px;
   line-height: 1.6;
 
+  // 전체 가로에서 960px만 차지하는 컨테이너
   .footer-content {
-    position: relative;
     width: 960px;
-    height: 88px;
+    height: 100%;
     margin: 0 auto;
-    top: 50%;
-    transform: translateY(-50%);
+    color: #919191;
 
-    img.footer-logo {
-      position: absolute;
-      left: 0;
-      top: 0;
+    // 이미지 가운데 정렬은 px값으로 계산
+    > .footer-ci-image {
+      margin-top: 90px;
     }
-    .footer-text {
+    // 수직가운데 정렬을 위한 설정, 우측에서부터 시작하게 하기 위해 float:right설정
+    > .content-list-container {
       position: relative;
-      left: 120px;
-      color: white;
+      top: 50%;
+      transform: translateY(-50%);
+      float: right;
 
+      // 각 요소가 가로로 쌓이며, bottom을 기준으로 세로정렬 하기 위해 display:inline-block설정
+      // vertical-align: bottom으로 인라인요소간의 정렬 설정
       ul {
-        position: relative;
         display: inline-block;
         vertical-align: bottom;
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
+        margin-left: 10px;
+
+        > li.title {
+          color: white;
+          font-size: 14px;
+        }
       }
     }
   }
 }
+
+// footer {
+//   background-color: $color-bg-footer;
+//   height: 268px;
+//   font-size: 11px;
+//   line-height: 1.6;
+//
+//   .footer-content {
+//     position: relative;
+//     width: 960px;
+//     height: 88px;
+//     margin: 0 auto;
+//     top: 50%;
+//     transform: translateY(-50%);
+//
+//     img.footer-logo {
+//       position: absolute;
+//       left: 0;
+//       top: 0;
+//     }
+//     .footer-text {
+//       position: relative;
+//       left: 120px;
+//       color: white;
+//
+//       ul {
+//         position: relative;
+//         display: inline-block;
+//         vertical-align: bottom;
+//         list-style-type: none;
+//         padding: 0;
+//         margin: 0;
+//       }
+//     }
+//   }
+// }

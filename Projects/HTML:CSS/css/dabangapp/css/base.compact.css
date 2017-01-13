@@ -4,6 +4,8 @@ html { box-sizing: border-box; font-size: 13px; }
 
 body { margin: 0; }
 
+ul, ol { list-style-type: none; margin: 0; padding: 0; }
+
 .clearfix:after { content: ' '; display: block; height: 0; clear: both; }
 
 /*# sourceMappingURL=base.compact.css.map */
