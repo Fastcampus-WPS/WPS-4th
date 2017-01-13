@@ -1,0 +1,13 @@
+html { font-size: 14px; color: #333132; }
+
+html, body { width: 100%; height: 100%; background-color: white; }
+
+ul, li { list-style-type: none; padding: 0; margin: 0; }
+
+a { color: inherit; text-decoration: none; }
+
+p { line-height: 1.4; }
+
+.clearfix:after { content: ' '; display: block; clear: both; height: 0; }
+
+/*# sourceMappingURL=base.compact.css.map */

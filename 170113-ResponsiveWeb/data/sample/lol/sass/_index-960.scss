@@ -1,0 +1,54 @@
+@media screen and (max-width: 959px) {
+  $width: 768px;
+
+  .content-center {
+    width: $width;
+  }
+  #wrap > #index-carousel {
+    .carousel-item {
+      .carousel-content {
+        width: $width;
+        padding: 0 20px;
+      }
+    }
+  }
+  #wrap > #index-news {
+    $li-width: $width / 3 - 4px;
+    > ul.news-list {
+      > li.news-item {
+        width: $li-width;
+        margin-bottom: 6px;
+
+        &:nth-child(3n-1) {
+          margin: auto 6px;
+        }
+
+        > a {
+          > .news-image {
+            width: $li-width;
+          }
+          > .news-content {
+            > .news-description {
+              
+            }
+          }
+        }
+      }
+    }
+  }
+  #wrap > #game-info {
+    ul.info-list {
+      li.info-item {
+        width: $width / 2 - 5px;
+      }
+    }
+  }
+
+  #wrap > #champion-rotation {
+    ul.rotation-list {
+      li.rotation-item {
+        width: $width / 10 - 10px;
+      }
+    }
+  }
+}
