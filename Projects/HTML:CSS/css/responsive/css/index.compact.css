@@ -1,3 +1,5 @@
+* { padding: 0; margin: 0; }
+
 .clearfix:after { content: ''; display: block; height: 0; clear: both; }
 
 html, body { margin: 0; padding: 0; }
