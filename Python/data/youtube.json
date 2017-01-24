@@ -1,0 +1,177 @@
+{
+ "kind": "youtube#searchListResponse",
+ "etag": "\"gMxXHe-zinKdE9lTnzKu8vjcmDI/s-o2pixuI_TAiYS9wwcDiCufu5Q\"",
+ "nextPageToken": "CAUQAA",
+ "regionCode": "KR",
+ "pageInfo": {
+  "totalResults": 93290,
+  "resultsPerPage": 5
+ },
+ "items": [
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"gMxXHe-zinKdE9lTnzKu8vjcmDI/4IvTVCNE-4vq7wzAC-IFrHZQU70\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "VrbhvGILy7Y"
+   },
+   "snippet": {
+    "publishedAt": "2016-11-22T17:42:14.000Z",
+    "channelId": "UCW0DxkjJlQ7YRs3UiyGOIcg",
+    "title": "직캠 Girlsday 걸스데이 민아 기대해 목원대 축제 150528 spdstudio",
+    "description": "",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/VrbhvGILy7Y/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/VrbhvGILy7Y/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/VrbhvGILy7Y/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "SPD STUDIO",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"gMxXHe-zinKdE9lTnzKu8vjcmDI/WNdn9n85uHOFS7v_6Xa7E8RmFB4\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "iUyNtGY8WVM"
+   },
+   "snippet": {
+    "publishedAt": "2014-10-11T17:39:56.000Z",
+    "channelId": "UC1LhG4U39-8NBFEjV4RUCIA",
+    "title": "141011 걸스데이 애교반상회 민아 혜리 이세영 Minah Hyeri Girl's Day SNLKOREA",
+    "description": "",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/iUyNtGY8WVM/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/iUyNtGY8WVM/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/iUyNtGY8WVM/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "GsDsomething02",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"gMxXHe-zinKdE9lTnzKu8vjcmDI/Lw5jO_4Eg-bOxj0zfuWNGwxxhx8\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "sT5ssKkD-iM"
+   },
+   "snippet": {
+    "publishedAt": "2015-11-23T12:26:58.000Z",
+    "channelId": "UCuGzTxyYznrixM8N9iVAC9A",
+    "title": "높이뛰기 민아 금메달 혜리 소진 유라 걸스데이 Girl's Day Minah Hyeri Sojin Yura 아육대 130211",
+    "description": "",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/sT5ssKkD-iM/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/sT5ssKkD-iM/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/sT5ssKkD-iM/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "Expectation0",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"gMxXHe-zinKdE9lTnzKu8vjcmDI/v3hx_hv99aH-MMFYfs2ma3RzjNE\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "a3QJeC1UNDc"
+   },
+   "snippet": {
+    "publishedAt": "2015-12-17T22:53:01.000Z",
+    "channelId": "UCS7W22-coWXOmlyN97S2pvg",
+    "title": "[4K] 151217 철원 위문공연 걸스데이 민아 직캠 썸씽 by Spinel",
+    "description": "151217 Girl's Day Minah fancam - Something by 스피넬 http://minahstudio.com.",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/a3QJeC1UNDc/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/a3QJeC1UNDc/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/a3QJeC1UNDc/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "Spinel CAM",
+    "liveBroadcastContent": "none"
+   }
+  },
+  {
+   "kind": "youtube#searchResult",
+   "etag": "\"gMxXHe-zinKdE9lTnzKu8vjcmDI/SvilVPmrxiC9d5qP5EH0X0BuR5g\"",
+   "id": {
+    "kind": "youtube#video",
+    "videoId": "Ck1px0q478E"
+   },
+   "snippet": {
+    "publishedAt": "2016-07-25T02:22:23.000Z",
+    "channelId": "UChDyxL-ofcSqvBAStmAnNgQ",
+    "title": "[인터뷰] '미녀공심이' 걸스데이 민아 \"자신있는 신체부위? 다리\"",
+    "description": "최근 '미녀공심이'에서 타이틀롤 공심 역을 맡았던 민아와 인터뷰를 진행했다.",
+    "thumbnails": {
+     "default": {
+      "url": "https://i.ytimg.com/vi/Ck1px0q478E/default.jpg",
+      "width": 120,
+      "height": 90
+     },
+     "medium": {
+      "url": "https://i.ytimg.com/vi/Ck1px0q478E/mqdefault.jpg",
+      "width": 320,
+      "height": 180
+     },
+     "high": {
+      "url": "https://i.ytimg.com/vi/Ck1px0q478E/hqdefault.jpg",
+      "width": 480,
+      "height": 360
+     }
+    },
+    "channelTitle": "더스타 / The STAR",
+    "liveBroadcastContent": "none"
+   }
+  }
+ ]
+}
