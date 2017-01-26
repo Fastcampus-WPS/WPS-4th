@@ -20,3 +20,30 @@ Lux
 `-f` : 삭제확인 하지 않음
 
 
+## slice연산
+
+```python
+In [47]: sample_list2[-1:-4:-1]
+Out[47]: ['Dec', 'Nov', 'Oct']
+
+In [48]: sample_list2[-1]
+Out[48]: 'Dec'
+
+In [49]: sample_list2[-2]
+Out[49]: 'Nov'
+
+In [50]: sample_list2[-3]
+Out[50]: 'Oct'
+
+In [51]: sample_list2[-4]
+Out[51]: 'Sep'
+```
+
+sample\_list2 = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']일때, 
+뒤에서부터 거꾸로 'Dec','Nov','Oct' 를 출력하고 싶을때 slice문은 sample_list2[-1:-3:-1]이 되어야 하지 않나요?
+왜 sample\_list2[-1:-4:-1]를 실행해야 제가 생각한 결과가 나오는지 궁금합니다.
+
+-
+
+end문은 '미만'을 뜻하므로, -3번째까지 포함하고 싶다면 -4를 적어주어야 합니다.
+
