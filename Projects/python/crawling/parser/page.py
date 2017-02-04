@@ -1,3 +1,4 @@
+import math
 from .communication import get_soup_from_url
 
 
@@ -71,12 +72,25 @@ def get_episode_list_from_page(webtoon_id, page=1):
         td_rating = td_list[2]
         td_created = td_list[3]
 
+        url_img_thumbnail = td_thumbnail.a.img['src']
+        # 파일경로에서 파일 이름과 확장자를 구분함
+        import os
+        _, ext = os.path.splitext(url_img_thumbnail)
+
         title = td_title.get_text(strip=True)
         created = td_created.get_text(strip=True)
         link = td_title.find('a').get('href')
+        import re
+        # 정규표현식, 아무문자열이나 반복되다가 ?no=또는 &no=이후의 숫자와 매칭된다
+        p = re.compile(r'.*[?&]no=(\d+).*')
+        m = re.match(p, link)
+        no = m.group(1)
 
         cur_episode = {
+            'url_img_thumbnail': url_img_thumbnail,
+            'file_ext': ext,
             'title': title,
+            'no': no,
             'link': link,
             'created': created,
         }
@@ -107,6 +121,84 @@ def get_webtoon_episode_list(webtoon_id):
         # 현재 페이지에서 가져온 episode list를 total_episode_list리스트에 넣어준다
         total_episode_list.extend(cur_episode_list)
 
-    # for episode in total_episode_list:
-    #     print(episode)
+    for episode in total_episode_list:
+        print(episode)
+    return total_episode_list
+
+
+def get_webtoon_episode_list_by_range(webtoon_id, start, end):
+    # 웹툰ID, start, end를
+    # 받아서
+    # 가장
+    # 최근부터
+    # start만큼의
+    # offset부터
+    # end의
+    # offset까지
+    # 해당하는
+    # episode들의
+    # 정보
+    # 리스트를
+    # 리턴해주는
+    # 함수
+    '''
+    page_count = 10 (한 페이지당 10개의 요소가 있다)
+    구할수 있는 정보 : 최신화의 no
+    페이지당 10개씩 episode list
+        -> 최신화의 no, start, end를 비교해서 어떤 page를 가져와야 하는지
+    start가 0일때 최신화부터
+
+    no = 183
+    start = 27
+    end = 42
+
+    -> 156 ~ 141
+    start_no = 156
+    end_no = 141
+        -> no 156 ~ 142화까지 (141화는 end로 미만처리)
+
+    start / page_count = 2.5 => 1페이지에 10개, 2페이까지 20개, 3페이지 에 start에 있는 부분이 해당
+    end / page_count = 4.2 => 5페이지에 end에 있는 부분이 해당
+
+    start, end의 offset을 page_count로 나눈 소수를 올림처리하면 start와 end가 해당하는 페이지 번호가 나옴
+    '''
+    # 마지막에 리턴해줄 episode dict 리스트
+    total_episode_list = []
+    # 한 페이지에 episode 몇 개씩 들어있는지
+    page_count = 10
+    # start offset의 episode가 몇 번째 page에 해당하는지
+    start_page = math.ceil(start / page_count)
+    # end offset의 episode가 몇 번째 page에 해당하는지
+    end_page = math.ceil(end / page_count)
+
+    # start가 27일 경우, 7이 남음 -> 3번째 페이지에서 7번째 요소가 start offset에 해당하는 episode
+    # 따라서 해당 페이지의 episode_list[start_slice_num:]로 자르면
+    # start보다 앞에 있는 episode들은 잘려나감
+    start_slice_num = start % page_count
+
+    # end가 42일 경우 2가 남음 -> 4번째 페이지에서 2번째 요소가 end offset에 해당하는 episode
+    # 따라서 해당 페이지의 episode_list[:end_slice_num]로 자르면
+    # end를 포함한 episode들은 잘려나감 (조건에서 end는 미만으로 처리)
+    end_slice_num = end % page_count
+
+    # start_page부터 end_page까지 순회해야하므로 range의 마지막은 미만처리되니 끝 번호에 1추가
+    for num in range(start_page, end_page + 1):
+        # 해당 페이지의 episode_list를 받아와서
+        cur_episode_list = get_episode_list_from_page(webtoon_id, num)
+
+        # 만약에 첫 페이지일 경우
+        if num == start_page:
+            # 받아온 episode_list를 start_slice_num을 시작 오프셋으로 잘라줌
+            cur_episode_list = cur_episode_list[start_slice_num:]
+        # 만약에 마지막 페이지일 경우
+        elif num == end_page:
+            # 받아온 episode_list를 end_slice_num을 끝 오프셋으로 잘라줌
+            cur_episode_list = cur_episode_list[:end_slice_num]
+        # 리턴할 total_episode_list에 연장시킴
+        total_episode_list.extend(cur_episode_list)
+
+    for episode in total_episode_list:
+        print(episode)
+
+    # 최신화를 기준으로 start이상, end미만의 episode_list를 리턴하게 됨
     return total_episode_list
