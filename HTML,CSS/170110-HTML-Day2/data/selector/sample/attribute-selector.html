@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Attribute Selector</title>
+  <link rel="stylesheet" href="css/attribute-selector.css">
+</head>
+<body>
+  <section id="attr1">
+    <h3>E[attr]</h3>
+    <ul>
+      <li><a>Abilities</a></li>
+      <li><a href="#">Illumination</a></li>
+      <li><a href="#">Light Binding</a></li>
+      <li><a href="#">Prismatic Barrier</a></li>
+      <li><a href="#">Lucent Singularity</a></li>
+      <li><a href="#">Final Spark</a></li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <section id="attr2">
+    <h3>E[attr="val"]</h3>
+    <ul>
+      <li><a>Abilities</a></li>
+      <li><a href="#" type="passive">Illumination</a></li>
+      <li><a href="#" type="normal">Light Binding</a></li>
+      <li><a href="#" type="normal">Prismatic Barrier</a></li>
+      <li><a href="#" type="normal">Lucent Singularity</a></li>
+      <li><a href="#" type="ultimate">Final Spark</a></li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <section id="attr3">
+    <h3>E[attr~="val"]</h3>
+    <ul>
+      <li><a href="#">Illumination</a></li>
+      <li><a href="#">Light Binding</a></li>
+      <li><a href="#" class="item-red">Prismatic Barrier</a></li>
+      <li><a href="#" class="item red">Lucent Singularity</a></li>
+      <li><a href="#" class="item">Final Spark</a></li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <section id="attr4">
+    <h3>E[attr|="val"]</h3>
+    <ul>
+      <li><a>Abilities</a></li>
+      <li><a href="#">Illumination</a></li>
+      <li><a href="#" class="skill">Light Binding</a></li>
+      <li><a href="#" class="skill normal">Prismatic Barrier</a></li>
+      <li><a href="#" class="skill-normal">Lucent Singularity</a></li>
+      <li><a href="#" class="u-skill-ultimate">Final Spark</a></li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <section id="attr5">
+    <h3>E[attr^="val"]</h3>
+    <ul>
+      <li><a>Abilities</a></li>
+      <li><a href="#">Illumination</a></li>
+      <li><a href="#" class="skillnormal">Light Binding</a></li>
+      <li><a href="#" class="skillnormal">Prismatic Barrier</a></li>
+      <li><a href="#" class="skillnormal">Lucent Singularity</a></li>
+      <li><a href="#" class="skillultimate">Final Spark</a></li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <section id="attr6">
+    <h3>E[attr$="val"]</h3>
+    <ul>
+      <li><a>Abilities</a></li>
+      <li><a href="#" class="normal">Illumination</a></li>
+      <li><a href="#" class="normalskill">Light Binding</a></li>
+      <li><a href="#" class="normalskill">Prismatic Barrier</a></li>
+      <li><a href="#" class="normalskill">Lucent Singularity</a></li>
+      <li><a href="#" class="ultimateskill">Final Spark</a></li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <section id="attr7">
+    <h3>E[attr*="val"]</h3>
+    <ul>
+      <li><a>Abilities</a></li>
+      <li><a href="#" class="passive">Illumination</a></li>
+      <li><a href="#" class="skill">Light Binding</a></li>
+      <li><a href="#" class="normal-skill">Prismatic Barrier</a></li>
+      <li><a href="#" class="normalskill">Lucent Singularity</a></li>
+      <li><a href="#" class="skill__ultimate">Final Spark</a></li>
+    </ul>
+  </section>
+
+</body>
+</html>

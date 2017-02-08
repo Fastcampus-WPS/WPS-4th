@@ -1,0 +1,124 @@
+@media screen and (max-width: 414px) {
+  $width: 100%;
+
+  html {
+    font-size: 12px;
+  }
+
+  .section-title, .section-description {
+    text-align: center;
+  }
+  .content-center {
+    width: $width;
+    padding: 0 1%;
+    box-sizing: border-box;
+  }
+  #wrap > header#top-header {
+    $height-top-nav: 40px;
+    height: $height-top-nav;
+
+    > #top-header-nav {
+      height: 100%;
+
+      > a.nav-logo {
+        > img {
+          box-sizing: border-box;
+          height: $height-top-nav;
+          padding: 7px 5px;
+
+          &.logo-big {
+            display: none;
+          }
+          &.logo-small {
+            display: inline-block;
+          }
+        }
+      }
+      > .nav-menu {
+        display: none;
+
+        > li.menu-item {
+          font-size: 0.6rem;
+          margin: auto 8px;
+        }
+      }
+      > .mobile-menu {
+        display: inline-block;
+        float: right;
+        border: 1px solid #999;
+        color: #999;
+        padding: 5px 20px;
+        background-color: transparent;
+        border-radius: 2px;
+        transition-duration: 0.3s;
+        vertical-align: top;
+        margin-top: 8px;
+        margin-right: 5px;
+      }
+    }
+  }
+  #wrap > #index-carousel {
+    height: 220px;
+
+    .carousel-item {
+      .carousel-content {
+        width: $width;
+        padding: 0 20px;
+      }
+    }
+  }
+  #wrap > #index-news {
+    $li-width: $width;
+
+    > ul.news-list {
+      > li.news-item {
+        width: $li-width;
+        height: auto;
+        margin-bottom: 1%;
+
+        &:nth-child(3n-1) {
+          margin: auto 0;
+          margin-bottom: 1%;
+        }
+        &:nth-child(2n) {
+          margin: auto 0;
+          margin-bottom: 1%;
+        }
+
+
+        > a {
+          > .news-image {
+            width: 100%;
+            margin: 0;
+          }
+          > .news-info {
+            position: relative;
+          }
+        }
+      }
+    }
+  }
+  #wrap > #game-info {
+    ul.info-list {
+      li.info-item {
+        width: $width;
+        margin-right: 0;
+        margin-bottom: 2%;
+      }
+    }
+  }
+
+  #wrap > #champion-rotation {
+    ul.rotation-list {
+      li.rotation-item {
+        width: $width / 5 - 0.9%;
+        margin: 0 0.45%;
+      }
+    }
+  }
+  #wrap > footer {
+    > .footer-content {
+      padding: 3% 0;
+    }
+  }
+}

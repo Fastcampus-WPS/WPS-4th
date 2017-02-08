@@ -1,0 +1,241 @@
+$width: 960px;
+$height-top-nav: 70px;
+$color-link-black: #303030;
+$color-text-default: #333132;
+$color-text-news-title: #257372;
+$color-text-news-info: #888;
+
+.content-center {
+  width: $width;
+  margin: 0 auto;
+}
+%section {
+  margin-bottom: 50px;
+}
+img {
+  
+}
+
+#wrap {
+
+}
+
+#wrap > header#top-header {
+  @extend .content-center;
+  height: $height-top-nav;
+
+  > #top-header-nav {
+    height: 100%;
+    line-height: $height-top-nav;
+
+    > a.nav-logo {
+      display: inline-block;
+      height: 100%;
+
+      > img {
+        padding: 10px 0;
+        height: $height-top-nav - 20px;
+
+        &.logo-big {
+          display: inline-block;
+        }
+        &.logo-small {
+          display: none;
+        }
+      }
+    }
+    > .nav-menu {
+      float: right;
+
+      > li.menu-item {
+        float: left;
+        font-size: 0.9rem;
+        font-weight: bold;
+        margin: auto 15px;
+
+        > a {
+          color: $color-link-black;
+        }
+      }
+    }
+    > .mobile-menu {
+      display: none;
+    }
+  }
+}
+
+#wrap > #index-carousel {
+  height: 381px;
+  background-color: black;
+  margin-bottom: 20px;
+
+  .carousel-item {
+    height: 100%;
+    background-position: center top;
+    background-repeat: no-repeat;
+
+    &.lux {
+      background-image: url(../images/bg_main_carousel_lux.jpg);
+    }
+
+    .carousel-content {
+      position: relative;
+      width: $width;
+      margin: 0 auto;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #ccc;
+      box-sizing: border-box;
+
+      .carousel-title {
+        font-size: 1.7em;
+        margin-bottom: 5px;
+        color: #fafafa;
+      }
+      .carousel-description {
+        color: #ddd;
+        margin-bottom: 20px;
+      }
+      .carousel-btn {
+        border: 1px solid #ddd;
+        color: #ddd;
+        padding: 5px 20px;
+        background-color: transparent;
+        border-radius: 2px;
+        transition-duration: 0.3s;
+
+        &:hover {
+          background-color: #ddd;
+          color: black;
+        }
+      }
+    }
+  }
+}
+
+
+#wrap > #index-news {
+  @extend .content-center;
+  @extend %section;
+
+  h3.news-title {
+    margin-bottom: 5px;
+  }
+
+  > ul.news-list {
+    width: 100%;
+
+    > li.news-item {
+      position: relative;
+      float: left;
+      border: 1px solid #ddd;
+      box-sizing: border-box;
+      width: $width / 3 - 20px;
+      height: 320px;
+      margin-bottom: 30px;
+
+      &:nth-child(3n-1) {
+        margin: auto 30px;
+      }
+
+      > a {
+        > .news-image {
+          width: $width / 3 - 20px;
+          margin-left: -1px;
+          margin-top: -1px;
+        }
+
+        > .news-content {
+          padding: 15px;
+
+          > .news-title {
+            margin-bottom: 5px;
+            color: $color-text-news-title;
+          }
+          > .news-description {
+            max-height: 80px;
+            overflow: hidden;
+          }
+        }
+        > .news-info {
+          position: absolute;
+          width: 100%;
+          bottom: 0;
+          box-sizing: border-box;
+          padding: 5px 15px;
+          // border-top: 1px solid #ccc;
+          font-size: 0.7rem;
+          color: $color-text-news-info;
+
+          > .news-type {
+            float: right;
+          }
+        }
+
+      }
+    }
+  }
+}
+
+#wrap > #game-info {
+  @extend .content-center;
+  @extend %section;
+
+  ul.info-list {
+    li.info-item {
+      float: left;
+      width: $width / 2 - 5px;
+      margin-right: 10px;
+
+      &.last {
+        margin-right: 0;
+      }
+
+      img.info-image {
+        width: 100%;
+      }
+      p.info-title {
+        margin: 0;
+        font-size: 1.1em;
+      }
+    }
+  }
+}
+
+#wrap > #champion-rotation {
+  @extend .content-center;
+  @extend %section;
+
+  ul.rotation-list {
+    li.rotation-item {
+      float: left;
+      width: $width / 10 - 10px;
+      margin-right: 11px;
+
+      &.last {
+        margin-right: 0;
+      }
+
+      img.rotation-icon {
+        width: 100%;
+      }
+      p.rotation-name {
+        font-size: 1.0rem;
+        margin: 0;
+        text-align: center;
+      }
+    }
+  }
+}
+
+#wrap > footer {
+  background-color: #eee;
+  font-size: 0.8rem;
+  text-align: center;
+  color: #8e8e8e;
+
+  .footer-content {
+    @extend .content-center;
+    padding: 15px 0;
+  }
+}
