@@ -1,0 +1,6 @@
+진행순서
+
+1. functional_test.py
+2. functional_test2.py
+3. blog/tests.py
+    BadTest

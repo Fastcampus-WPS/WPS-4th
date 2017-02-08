@@ -1,9 +1,0 @@
-{
-	"version": 3,
-	"file": "common.nested.css",
-	"sources": [
-		"../sass/common.scss"
-	],
-	"names": [],
-	"mappings": "AAAA,AAAA,cAAc,CAAC;EACb,aAAa,EAAE,GAAG,GACnB;;AACD,AAAA,oBAAoB,CAAC;EACnB,MAAM,EAAE,CAAC;EACT,aAAa,EAAE,GAAG,GACnB"
-}
