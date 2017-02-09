@@ -5,3 +5,4 @@ from django.test import TestCase
 class BadTest(TestCase):
     def test_bad_function(self):
         self.assertEqual(1 + 1, 5)
+_a
