@@ -152,3 +152,29 @@ class MemberShip(models.Model):
         blank=True,
         related_name='recommender_membership_set'
     )
+
+    def __str__(self):
+        return '{} - {} ({})'.format(
+            self.group.name,
+            self.idol.name,
+            self.date_joined,
+        )
+
+
+class Article(models.Model):
+    title = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.title
+
+
+class Tag(models.Model):
+    article = models.ForeignKey(
+        Article,
+        related_name='tags',
+        related_query_name='tag',
+    )
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
