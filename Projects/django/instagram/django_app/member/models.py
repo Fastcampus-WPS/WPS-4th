@@ -1,86 +1,55 @@
-from django.db import models, IntegrityError
+from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import PermissionsMixin
+from django.db import models
 
 
-class MyUser(models.Model):
-    username = models.CharField(
-        '유저네임',
-        max_length=30,
-        unique=True
+class MyUserManager(BaseUserManager):
+    def create_user(self, username, password=None):
+        user = self.model(
+            username=username
+        )
+        user.set_password(password)
+        user.save()
+        return user
+
+    def create_superuser(self, username, password):
+        user = self.model(
+            username=username
+        )
+        user.set_password(password)
+        user.is_staff = True
+        user.is_superuser = True
+        user.save()
+        return user
+
+
+class MyUser(PermissionsMixin, AbstractBaseUser):
+    # 다중상속으로 관리자페이지에 로그인 할 수 있는 모든 속성과 메서드를 갖춤
+    CHOICES_GENDER = (
+        ('m', 'Male'),
+        ('f', 'Female'),
     )
-    last_name = models.CharField(
-        '성',
-        max_length=20
-    )
-    first_name = models.CharField(
-        '이름',
-        max_length=20
-    )
-    nickname = models.CharField(
-        '닉네임',
-        max_length=24,
-    )
-    email = models.EmailField('이메일', blank=True)
-    date_joined = models.DateTimeField(auto_now_add=True)
-    last_modified = models.DateTimeField(auto_now=True)
-    following = models.ManyToManyField(
-        'self',
-        related_name='follower_set',
-        symmetrical=False,
-        blank=True,
-    )
+    # 기본값
+    # password
+    # last_login
+    # is_active
+    # username이라는 필드를 만들고 USERNAME_FIELD에 추가한 후 makemigrations시도해보기
+    username = models.CharField(max_length=30, unique=True)
+    email = models.EmailField(blank=True)
+    gender = models.CharField(max_length=1, choices=CHOICES_GENDER)
+    nickname = models.CharField(max_length=20)
 
-    def __str__(self):
-        return self.username
+    is_staff = models.BooleanField(default=False)
 
-    def follow(self, user):
-        self.following.add(user)
+    USERNAME_FIELD = 'username'
+    objects = MyUserManager()
 
-    def unfollow(self, user):
-        self.following.remove(user)
+    def get_full_name(self):
+        return '{} ({})'.format(
+            self.nickname,
+            self.username
+        )
 
-    @property
-    def followers(self):
-        return self.follower_set.all()
+    def get_short_name(self):
+        return self.nickname
 
-    def change_nickname(self, new_nickname):
-        self.nickname = new_nickname
-        self.save()
-
-    @staticmethod
-    def create_dummy_user(num):
-        """
-        num개수만큼 User1 ~ User<num>까지 임의의 유저를 생성한다
-        :return 생성된 유저 수
-        """
-        import random
-        last_name_list = ['방', '이', '박', '김']
-        first_name_list = ['민아', '혜리', '소진', '아영']
-        nickname_list = ['빵', '리혤', '쏘지', '율곰']
-        created_count = 0
-        for i in range(num):
-            try:
-                MyUser.objects.create(
-                    username='User{}'.format(i + 1),
-                    last_name=random.choice(last_name_list),
-                    first_name=random.choice(first_name_list),
-                    nickname=random.choice(nickname_list),
-                )
-                created_count += 1
-            except IntegrityError as e:
-                print(e)
-        return created_count
-
-    @staticmethod
-    def assign_global_variables():
-        # sys모듈은 파이썬 인터프리터 관련 내장모듈
-        import sys
-        # __main__모듈을 module변수에 할당
-        module = sys.modules['__main__']
-
-        # MyUser객체 중 'User'로 시작하는 객체들만 조회하여 users변수에 할당
-        users = MyUser.objects.filter(username__startswith='User')
-
-        # users를 순회하며
-        for index, user in enumerate(users):
-            # __main__모듈에 'u1, u2, u3...'이름으로 각 MyUser객체를 할당
-            setattr(module, 'u{}'.format(index + 1), user)
