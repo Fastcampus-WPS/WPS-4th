@@ -8,39 +8,40 @@
     TEMPLATE설정의 DIRS에 추가
 """
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 
+from .forms import LoginForm
 
-def login(request):
-    """
-    request.method == 'POST'일 때와
-    아닐 때의 동작을 구분
-    POST일 때는 authenticate, login을 거치는 로직을 실행
-    GET일 때는 member/login.html을 render하여 return하도록 함
-    """
+
+def login_fbv(request):
     if request.method == 'POST':
-        # html파일에서 POST요청을 보내기위해서
-        # form을 정의하고, input요소 2개의 name을
-        # username, password로 설정하고
-        # button type submit을 실행
+        # LoginForm을 사용
+        form = LoginForm(data=request.POST)
+        if form.is_valid():
+            # 전달되어온 POST데이터에서 'username'과 'password'키의 값들을 사용
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            # authenticate의 인자로 POST로 전달받은 username, password를 사용
+            user = authenticate(username=username, password=password)
 
-        # 전달되어온 POST데이터에서 'username'과 'password'키의 값들을 사용
-        username = request.POST['username']
-        password = request.POST['password']
-        # authenticate의 인자로 POST로 전달받은 username, password를 사용
-        user = authenticate(username=username, password=password)
+            # 만약 인증이 정상적으로 완료되었다면
+            # (해당하는 username, password에 일치하는 User객체가 존재할경우)
+            if user is not None:
+                # Django의 인증관리 시스템을 이용하여 세션을 관리해주기 위해 login()함수 사용
+                login(request, user)
+                return redirect('/admin')
+            # 인증에 실패하였다면 (username, password에 일치하는 User객체가 존재하지 않을 경우)
+            else:
+                form.add_error(None, 'ID or PW incorrect')
 
-        # 만약 인증이 정상적으로 완료되었다면
-        # (해당하는 username, password에 일치하는 User객체가 존재할경우)
-        if user is not None:
-            # Django의 인증관리 시스템을 이용하여 세션을 관리해주기 위해 login()함수 사용
-            login(request, user)
-            return HttpResponse('Login Success')
-        # 인증에 실패하였다면 (username, password에 일치하는 User객체가 존재하지 않을 경우)
-        else:
-            return HttpResponse('Login failed')
     # GET method로 요청이 왔을 경우
     else:
-        # member/login.html 템플릿을 render한 결과를 리턴
-        return render(request, 'member/login.html')
+        # 빈 LoginForm객체를 생성
+        form = LoginForm()
+
+    context = {
+        'form': form,
+    }
+    # member/login.html 템플릿을 render한 결과를 리턴
+    return render(request, 'member/login.html', context)
