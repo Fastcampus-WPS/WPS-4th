@@ -1,0 +1,26 @@
+<div>{{ post.created_date }}</div>
+<div>
+	<img src="{{ MEDIA_URL }}{{ post.photo }}" alt="">
+	<p>
+		{{ post.content|linebreaksbr }}
+	</p>
+</div>
+<hr>
+<div>
+	<p>Comments</p>
+	{% if post.comment_set.all %}
+		<ul>
+			{% for comment in post.comment_set.all %}
+			<li>{{ comment.author.username }} : {{ comment.content }}</li>
+			{% endfor %}
+		</ul>
+	{% else %}
+		<p>No comments</p>
+	{% endif %}
+
+	<!-- Comment Form -->
+	<form action="{% url 'post:comment_add' post_id=post.id %}" method="POST">{% csrf_token %}
+		<input type="text" name="content">
+		<button type="submit">Write comment</button>
+	</form>
+</div>

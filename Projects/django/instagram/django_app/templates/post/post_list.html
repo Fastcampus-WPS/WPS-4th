@@ -1,0 +1,22 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+	{% for post in posts %}
+		{{ post.id }} | {{ post.author.username }}<br>
+		<img src="{{ MEDIA_URL }}{{ post.photo }}"><br>
+		{{ post.content|linebreaksbr|truncatechars:100 }}
+		<hr>
+		{% if post.comment_set.all %}
+			{% for comment in post.comment_set.all %}
+				<div>
+					{{ comment.content }}
+				</div>
+			{% endfor %}
+		{% else %}
+			<p>No comments</p>
+		{% endif %}
+		<hr>
+	{% endfor %}
+{% endblock %}
+
+{#각 post에 연결된 Comment object list를 출력#}

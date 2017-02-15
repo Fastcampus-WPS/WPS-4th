@@ -53,7 +53,7 @@ class Post(models.Model):
         # 자신에게 연결된 Comment객체의 역참조 매니저(comment_set)로부터
         # create메서드를 이용해 Comment객체를 생성
         return self.comment_set.create(
-            user=user,
+            author=user,
             content=content
         )
 
