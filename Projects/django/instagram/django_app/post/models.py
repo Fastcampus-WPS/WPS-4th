@@ -27,6 +27,9 @@ class Post(models.Model):
     def __str__(self):
         return 'Post[{}]'.format(self.id)
 
+    class Meta:
+        ordering = ('-id', )
+
     def toggle_like(self, user):
         # PostLike 중간자모델에서 인자로 전달된 Post, MyUser객체를 가진 row를 조회
         # pl_list = PostLike.objects.filter(post=self, user=user)
