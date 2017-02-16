@@ -18,3 +18,7 @@
   @extend %sprite-image;
   background-position: -150px -254px;
 }
+.sprite-heart-empty {
+  @extend %sprite-image;
+  background-position: -281px -206px;
+}

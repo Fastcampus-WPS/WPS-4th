@@ -1,3 +1,3 @@
-.sprite-logo,.sprite-explore,.sprite-activity,.sprite-profile{background-image:url(/static/images/sprites.png);background-size:352px 339px}.sprite-logo{background-position:-176px 0}.sprite-explore{background-position:-200px -254px}.sprite-activity{background-position:-225px -254px}.sprite-profile{background-position:-150px -254px}
+.sprite-logo,.sprite-explore,.sprite-activity,.sprite-profile,.sprite-heart-empty{background-image:url(/static/images/sprites.png);background-size:352px 339px}.sprite-logo{background-position:-176px 0}.sprite-explore{background-position:-200px -254px}.sprite-activity{background-position:-225px -254px}.sprite-profile{background-position:-150px -254px}.sprite-heart-empty{background-position:-281px -206px}
 
 /*# sourceMappingURL=sprites.min.css.map */

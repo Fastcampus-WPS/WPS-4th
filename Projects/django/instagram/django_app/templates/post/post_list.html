@@ -3,24 +3,35 @@
 {% block content %}
 <div class="post-list-container">
   {% for post in posts %}
-    {{ post.id }} | {{ post.author.username }}<br>
-    <div>
-      <a href="{% url 'post:detail' post_id=post.id %}">
-        <img src="{{ MEDIA_URL }}{{ post.photo }}">
-      </a>
+  <article class="post">
+    <header class="post-header">
+      <span class="header-username">{{ post.author.username }}</span>
+      <span class="header-date">{{ post.created_date }}</span>
+    </header>
+    <div class="post-image-container">
+      <img src="{{ MEDIA_URL}}{{ post.photo}}" alt="" class="post-image">
     </div>
+    <div class="post-bottom-container">
+      <div class="post-content">{{ post.content|linebreaksbr|truncatechars:100 }}</div>
+      <div class="post-like-users">
 
-    <div>{{ post.content|linebreaksbr|truncatechars:100 }}</div>
-
-    <hr>
-    {% if post.comment_set.all %}
-      {% for comment in post.comment_set.all %}
-        <div>{{ comment.content }}</div>
-      {% endfor %}
-    {% else %}
-      <p>No comments</p>
-    {% endif %}
-    <hr>
+      </div>
+      <div class="post-comments">
+        {% if post.comment_set.all %}
+          {% for comment in post.comment_set.all %}
+            <div class="post-comment">
+              <span class="comment-author">{{ comment.author.username }}</span>
+              <span class="comment-content">{{ comment.content }}</span>
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+      <div class="post-comment-form-container">
+        <a href="" class="btn-like sprite-heart-empty"></a>
+        <input type="text" placeholder="댓글 달기..." class="input-comment">
+      </div>
+    </div>
+  </article>
   {% endfor %}
 </div>
 

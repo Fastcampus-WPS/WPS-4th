@@ -2,8 +2,9 @@
 	"version": 3,
 	"file": "base.min.css",
 	"sources": [
-		"../scss/base.scss"
+		"../scss/base.scss",
+		"../scss/_variables.scss"
 	],
 	"names": [],
-	"mappings": "AAAA,AAAA,IAAI,CAAE,AAAA,IAAI,AAAC,CACT,OAAO,CAAE,CAAC,CACV,MAAM,CAAE,CAAC,CACV"
+	"mappings": "AACA,AAAA,IAAI,CAAE,AAAA,IAAI,AAAC,CACT,OAAO,CAAE,CAAC,CACV,MAAM,CAAE,CAAC,CACT,SAAS,CAAE,IAAI,CACf,WAAW,CAAE,MAAM,CACpB,AACD,AAAQ,KAAH,CAAG,kBAAkB,AAAC,CACzB,gBAAgB,CCPF,OAAO,CDQrB,WAAW,CAAE,IAAI,CAClB"
 }

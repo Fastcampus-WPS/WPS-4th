@@ -1,7 +1,72 @@
 @import "variables";
 
-#wrap > .post-list-container {
-  background-color: $color-bg-gray;
+#wrap > .content-container > .post-list-container {
   margin: 0 auto;
   width: 600px;
+
+  article.post {
+    border: 1px solid $color-border-post;
+    border-radius: 3px;
+    background-color: white;
+    margin-bottom: 60px;
+
+    header.post-header {
+      padding: 14px 20px;
+      font-size: 14px;
+
+      .header-username {
+
+      }
+      .header-date {
+        float: right;
+      }
+    }
+    .post-image-container {
+      font-size: 0;
+      img.post-image {
+        width: 100%;
+      }
+    }
+    .post-bottom-container {
+      padding: 24px;
+      .post-content {
+        margin-bottom: 5px;
+      }
+      .post-like-users {
+        margin-bottom: 5px;
+      }
+      .post-comments {
+        border-bottom: 1px solid $color-border-post;
+        padding-bottom: 20px;
+
+        .post-comment {
+          .comment-author {
+            font-weight: bold;
+            margin-right: 5px;
+          }
+        }
+      }
+      .post-comment-form-container {
+        padding-top: 20px;
+        position: relative;
+        .btn-like {
+          display: inline-block;
+          width: 24px;
+          height: 24px;
+          margin-right: 5px;
+        }
+        input.input-comment {
+          border: none;
+          display: inline-block;
+          vertical-align: top;
+          position: absolute;
+          width: 100%;
+          left: 30px;
+          height: 24px;
+          box-sizing: border-box;
+          background-color: transparent;
+        }
+      }
+    }
+  }
 }
