@@ -1,0 +1,20 @@
+%sprite-image {
+  background-image: url(/static/images/sprites.png);
+  background-size: 352px 339px;
+}
+.sprite-logo {
+  @extend %sprite-image;
+  background-position: -176px 0;
+}
+.sprite-explore {
+  @extend %sprite-image;
+  background-position: -200px -254px;
+}
+.sprite-activity {
+  @extend %sprite-image;
+  background-position: -225px -254px;
+}
+.sprite-profile {
+  @extend %sprite-image;
+  background-position: -150px -254px;
+}

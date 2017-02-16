@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!doctype html>
 <html lang="ko">
 <head>
@@ -6,26 +7,33 @@
 	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Instagram</title>
+  <link rel="stylesheet" href="{% static 'css/sprites.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/base.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/common.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/header.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/post_list.min.css' %}">
 </head>
 <body>
-	<div>
-		{% if user.is_authenticated %}
-			{{ user.username }}님 환영합니다!
-		{% else %}
-			로그인 해주세요
-		{% endif %}
-	</div>
-	{#	html:5[tab]  #}
-	<header>
-		<nav>
-			<h1>Instagram</h1>
-			<ul>
+  <div id="wrap">
+  	<header class="main-header">
+  		<nav class="header-nav">
+        <span class="nav-group nav-left">
+          <a href="" class="logo sprite-logo"></a>
+        </span>
 
-			</ul>
+        <span class="nav-group nav-center">
+          <input type="text">
+        </span>
 
-		</nav>
-	</header>
-	{% block content %}
-	{% endblock %}
+        <span class="nav-group nav-right">
+          <a href="" class="btn-header-nav sprite-explore"></a>
+          <a href="" class="btn-header-nav sprite-activity"></a>
+          <a href="" class="btn-header-nav sprite-profile"></a>
+        </span>
+  		</nav>
+  	</header>
+  	{% block content %}
+  	{% endblock %}
+  </div>
 </body>
 </html>

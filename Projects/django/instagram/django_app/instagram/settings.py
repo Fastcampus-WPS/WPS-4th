@@ -17,6 +17,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 # 사용자가 업로드한 파일들을 관리할 폴더의 경로를 지정
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# 정적파일을 관리할 폴더 경로 지정
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 
 # Quick-start development settings - unsuitable for production
@@ -152,3 +154,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
+
+# Django가 개발모드에서 정적파일을 검색할 경로 목록
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]

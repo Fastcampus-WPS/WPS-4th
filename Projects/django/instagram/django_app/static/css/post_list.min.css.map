@@ -1,0 +1,10 @@
+{
+	"version": 3,
+	"file": "post_list.min.css",
+	"sources": [
+		"../scss/post_list.scss",
+		"../scss/_variables.scss"
+	],
+	"names": [],
+	"mappings": "AAEA,AAAQ,KAAH,CAAG,oBAAoB,AAAC,CAC3B,gBAAgB,CCFF,OAAO,CDGrB,MAAM,CAAE,MAAM,CACd,KAAK,CAAE,KAAK,CACb"
+}
