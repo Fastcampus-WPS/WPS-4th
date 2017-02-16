@@ -30,6 +30,7 @@ Post Detail에 댓글작성기능 추가
 """
 from django.shortcuts import render, redirect
 
+from post.forms import CommentForm
 from post.models import Post, Comment
 
 
@@ -44,29 +45,52 @@ def post_list(request):
 def post_detail(request, post_id):
     # 인자로 전달된 post_id와 일치하는 id를 가진 Post객체 하나만 조회
     post = Post.objects.get(id=post_id)
+    # Comment를 생성할 Form객체를 생성, 할당
+    comment_form = CommentForm()
     context = {
         'post': post,
+        'comment_form': comment_form,
     }
     return render(request, 'post/post_detail.html', context)
 
 
 def comment_add(request, post_id):
     if request.method == 'POST':
-        # 전달받은 POST데이터에서 'content'값을 할당
-        content = request.POST['content']
-        # HttpRequest에는 항상 User정보가 전달된다
-        user = request.user
-        # URL인자로 전달된 post_id값을 사용
-        post = Post.objects.get(id=post_id)
+        form = CommentForm(data=request.POST)
+        if form.is_valid():
+            content = form.cleaned_data['content']
+            # HttpRequest에는 항상 User정보가 전달된다
+            user = request.user
+            # URL인자로 전달된 post_id값을 사용
+            post = Post.objects.get(id=post_id)
+            # post의 메서드를 사용해서 Comment객체 생성
+            post.add_comment(user, content)
 
-        # post의 메서드를 사용해서 Comment객체 생성
-        # post.add_comment(user, content)
-
-        # Comment객체를 만들어준다
-        Comment.objects.create(
-            author=user,
-            post=post,
-            content=content
-        )
         # 다시 해당하는 post_detail로 리다이렉트
+        return redirect('post:detail', post_id=post_id)
+
+
+def post_like_toggle(request, post_id):
+    """
+    1. post_detail.html에 form을 하나 더 생성
+    2. 요청 view(url)가 post_like가 되도록 함
+    3. 요청을 받은 후 적절히 PostLike처리
+    4. redirect
+    """
+    if request.method == 'POST':
+        post = Post.objects.get(id=post_id)
+        post.toggle_like(user=request.user)
+        return redirect('post:detail', post_id=post_id)
+
+
+def comment_delete(request, post_id, comment_id):
+    """
+    1. post_detail.html의 Comment표현 loop내부에 form을 생성
+    2. 요청 view(url)가 comment_delete가 되도록 함
+    3. 요청을 받은 후 적절히 삭제처리
+    4. redirect
+    """
+    if request.method == 'POST':
+        comment = Comment.objects.get(id=comment_id)
+        comment.delete()
         return redirect('post:detail', post_id=post_id)

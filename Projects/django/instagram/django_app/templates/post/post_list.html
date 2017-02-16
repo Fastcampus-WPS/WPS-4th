@@ -3,14 +3,18 @@
 {% block content %}
 	{% for post in posts %}
 		{{ post.id }} | {{ post.author.username }}<br>
-		<img src="{{ MEDIA_URL }}{{ post.photo }}"><br>
-		{{ post.content|linebreaksbr|truncatechars:100 }}
+		<div>
+			<a href="{% url 'post:detail' post_id=post.id %}">
+				<img src="{{ MEDIA_URL }}{{ post.photo }}">
+			</a>
+		</div>
+
+		<div>{{ post.content|linebreaksbr|truncatechars:100 }}</div>
+
 		<hr>
 		{% if post.comment_set.all %}
 			{% for comment in post.comment_set.all %}
-				<div>
-					{{ comment.content }}
-				</div>
+				<div>{{ comment.content }}</div>
 			{% endfor %}
 		{% else %}
 			<p>No comments</p>

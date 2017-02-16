@@ -8,6 +8,23 @@
 	<title>Instagram</title>
 </head>
 <body>
+	<div>
+		{% if user.is_authenticated %}
+			{{ user.username }}님 환영합니다!
+		{% else %}
+			로그인 해주세요
+		{% endif %}
+	</div>
+	{#	html:5[tab]  #}
+	<header>
+		<nav>
+			<h1>Instagram</h1>
+			<ul>
+
+			</ul>
+
+		</nav>
+	</header>
 	{% block content %}
 	{% endblock %}
 </body>
