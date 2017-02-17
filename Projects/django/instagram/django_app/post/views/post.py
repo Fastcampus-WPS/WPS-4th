@@ -64,25 +64,20 @@ def post_detail(request, post_id):
 
 
 def post_add(request):
+    def create_post_comment(file, comment_content):
+        post = Post(author=request.user, photo=file)
+        post.save()
+        if comment_content != '':
+            post.add_comment(user=request.user, content=comment_content)
+
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            post = Post(
-                author=request.user,
-                photo=request.FILES['photo']
-            )
-            post.save()
+            files = request.FILES.getlist('photo')
+            comment_content = form.cleaned_data.get('content', '').strip()
 
-            comment_content = form.cleaned_data.get('content', '')
-            if comment_content.strip() != '':
-                post.add_comment(
-                    user=request.user,
-                    content=comment_content
-                )
-                # post.comment_set.create(
-                #     author=request.user,
-                #     content=comment_content
-                # )
+            for file in files:
+                create_post_comment(file, comment_content)
 
             return redirect('post:list')
     else:
