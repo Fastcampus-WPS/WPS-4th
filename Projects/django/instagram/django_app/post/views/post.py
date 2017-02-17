@@ -31,7 +31,16 @@ Post Detail에 댓글작성기능 추가
 from django.shortcuts import render, redirect
 
 from post.forms import CommentForm, PostForm
-from post.models import Post, Comment
+from post.models import Post
+
+
+__all__ = (
+    'post_list',
+    'post_detail',
+    'post_like_toggle',
+    'post_add',
+    'post_delete',
+)
 
 
 def post_list(request):
@@ -74,19 +83,11 @@ def post_add(request):
     return render(request, 'post/post_add.html', context)
 
 
-def comment_add(request, post_id):
+def post_delete(request, post_id):
     if request.method == 'POST':
-        form = CommentForm(data=request.POST)
-        if form.is_valid():
-            content = form.cleaned_data['content']
-            # HttpRequest에는 항상 User정보가 전달된다
-            user = request.user
-            # URL인자로 전달된 post_id값을 사용
-            post = Post.objects.get(id=post_id)
-            # post의 메서드를 사용해서 Comment객체 생성
-            post.add_comment(user, content)
-
-        # 다시 해당하는 post_detail로 리다이렉트
+        post = Post.objects.get(id=post_id)
+        if post.author.id == request.user.id:
+            post.delete()
         return redirect('post:list')
 
 
@@ -101,16 +102,3 @@ def post_like_toggle(request, post_id):
         post = Post.objects.get(id=post_id)
         post.toggle_like(user=request.user)
         return redirect('post:list')
-
-
-def comment_delete(request, post_id, comment_id):
-    """
-    1. post_detail.html의 Comment표현 loop내부에 form을 생성
-    2. 요청 view(url)가 comment_delete가 되도록 함
-    3. 요청을 받은 후 적절히 삭제처리
-    4. redirect
-    """
-    if request.method == 'POST':
-        comment = Comment.objects.get(id=comment_id)
-        comment.delete()
-        return redirect('post:detail', post_id=post_id)

@@ -6,6 +6,13 @@
   <article class="post">
     <header class="post-header">
       <span class="header-username">{{ post.author.username }}</span>
+	    <!-- Post delete form start -->
+      {% if user == post.author %}
+      <form action="{% url 'post:delete' post_id=post.id %}" method="POST" class="inline">{% csrf_token %}
+        <button type="submit" class="btn">Delete</button>
+      </form>
+      {% endif %}
+      <!-- Post delete form end -->
       <span class="header-date">{{ post.created_date }}</span>
     </header>
     <div class="post-image-container">
@@ -28,6 +35,12 @@
             <div class="post-comment">
               <span class="comment-author">{{ comment.author.username }}</span>
               <span class="comment-content">{{ comment.content }}</span>
+	            <!-- 삭제를 위한 Form -->
+              {% if user == comment.author %}
+	            <form action="{% url 'post:comment_delete' post_id=post.id comment_id=comment.id %}" method="POST">{% csrf_token %}
+		            <button type="submit" class="btn">Delete</button>
+	            </form>
+              {% endif %}
             </div>
           {% endfor %}
         {% endif %}

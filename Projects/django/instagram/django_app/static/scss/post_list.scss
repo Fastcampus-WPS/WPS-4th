@@ -45,6 +45,15 @@
             font-weight: bold;
             margin-right: 5px;
           }
+          form {
+            display: inline-block;
+
+            button {
+              font-size: 11px;
+              padding: 2px 3px;
+              cursor: pointer;
+            }
+          }
         }
       }
       .post-comment-form-container {
