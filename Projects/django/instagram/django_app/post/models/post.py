@@ -7,28 +7,50 @@
 3. Post모델의 like_users필드 구현
 4. Comment모델 구현
 """
+from django.conf import settings
 from django.db import models
 
-from member.models import MyUser
+__all__ = (
+    'Post',
+    'PostLike',
+)
+
+
+class PostManager(models.Manager):
+    def visible(self):
+        return super().get_queryset().filter(is_visible=True)
+
+
+class PostUserVisibleManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_visible=True)
 
 
 class Post(models.Model):
-    author = models.ForeignKey(MyUser)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL)
     photo = models.ImageField(
         upload_to='post', blank=True)
     content = models.TextField(blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     like_users = models.ManyToManyField(
-        MyUser,
+        settings.AUTH_USER_MODEL,
         through='PostLike',
         related_name='like_post_set',
     )
+    is_visible = models.BooleanField(default=True)
+
+    # Default 모델 매니저 교체
+    objects = PostManager()
+    # 커스텀 모델 매니저 추가
+    visible = PostUserVisibleManager()
+    # Post.objects.visible()
+    # Post.visible.all()
 
     def __str__(self):
         return 'Post[{}]'.format(self.id)
 
     class Meta:
-        ordering = ('-id', )
+        ordering = ('-id',)
 
     def toggle_like(self, user):
         # PostLike 중간자모델에서 인자로 전달된 Post, MyUser객체를 가진 row를 조회
@@ -69,22 +91,8 @@ class Post(models.Model):
         return self.comment_set.count()
 
 
-class Comment(models.Model):
-    author = models.ForeignKey(MyUser)
-    post = models.ForeignKey(Post)
-    content = models.TextField()
-    created_date = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return 'Post[{}]\'s Comment[{}], Author[{}]'.format(
-            self.post_id,
-            self.id,
-            self.author_id,
-        )
-
-
 class PostLike(models.Model):
-    user = models.ForeignKey(MyUser)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     post = models.ForeignKey(Post)
     created_date = models.DateTimeField(auto_now_add=True)
 
