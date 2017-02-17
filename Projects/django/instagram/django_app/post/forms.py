@@ -2,7 +2,7 @@ from django import forms
 
 
 class PostForm(forms.Form):
-    content = forms.CharField()
+    content = forms.CharField(required=False)
     photo = forms.ImageField()
 
 

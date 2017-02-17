@@ -27,10 +27,13 @@ class PostUserVisibleManager(models.Manager):
 
 
 class Post(models.Model):
+    """
+    1. Post모델에서 content 필드를 없애고 Db migration
+    2. post_add view의 동작을 변경 (입력받은 content는 새 Comment객체를 생성하도록)
+    """
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
     photo = models.ImageField(
         upload_to='post', blank=True)
-    content = models.TextField(blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     like_users = models.ManyToManyField(
         settings.AUTH_USER_MODEL,

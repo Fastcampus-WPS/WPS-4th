@@ -31,8 +31,7 @@ Post Detail에 댓글작성기능 추가
 from django.shortcuts import render, redirect
 
 from post.forms import CommentForm, PostForm
-from post.models import Post
-
+from post.models import Post, Comment
 
 __all__ = (
     'post_list',
@@ -70,10 +69,21 @@ def post_add(request):
         if form.is_valid():
             post = Post(
                 author=request.user,
-                content=form.cleaned_data['content'],
                 photo=request.FILES['photo']
             )
             post.save()
+
+            comment_content = form.cleaned_data.get('content', '')
+            if comment_content.strip() != '':
+                post.add_comment(
+                    user=request.user,
+                    content=comment_content
+                )
+                # post.comment_set.create(
+                #     author=request.user,
+                #     content=comment_content
+                # )
+
             return redirect('post:list')
     else:
         form = PostForm()
