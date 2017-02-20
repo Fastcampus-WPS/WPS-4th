@@ -8,6 +8,7 @@
     TEMPLATE설정의 DIRS에 추가
 """
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
 from post.models import Post
@@ -70,16 +71,37 @@ def signup_fbv(request):
     return render(request, 'member/signup.html', context)
 
 
+@login_required
 def profile(request):
     """
     자신의 게시물 수, 자신의 팔로워 수, 자신의 팔로우 수를
     context로 전달, 출력
     """
     post_count = Post.objects.filter(author=request.user).count()
+    follower_count = request.user.follower_set.count()
+    following_count = request.user.following.count()
     context = {
         'post_count': post_count,
+        'follower_count': follower_count,
+        'following_count': following_count,
     }
     return render(request, 'member/profile.html', context)
+
+
+def change_profile_image(request):
+    """
+    해당 유저의 프로필 이미지를 바꾼다
+    0. 유저 모델에 img_profile 필드 추가, migrations
+    1. change_profile_image.html 파일 작성
+    2. ProfileImageForm 생성
+    3. 해당 Form을 템플릿에 렌더링
+    4. request.method == 'POST'일 때, request.FILES의 값을 이용해서
+        request.user의 img_profile을 변경, 저장
+    5. 처리 완료 후 member:profile로 이동
+    6. profile.html에서 user의 프로필 이미지를 img태그를 사용해서 보여줌
+        {{ MEDIA_URL }}을 사용
+    """
+    pass
 
 
 def logout_fbv(request):
