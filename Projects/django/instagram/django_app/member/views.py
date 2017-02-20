@@ -10,6 +10,7 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 
+from post.models import Post
 from .forms import LoginForm, SignupForm
 
 
@@ -71,11 +72,12 @@ def signup_fbv(request):
 
 def profile(request):
     """
-    1. button 1개 (로그아웃)이 존재하는 member/profile.html을 render해주는 view
-    2. 메인의 우측 위 사람모양 아이콘에 이 뷰로 오는 링크를 연결
+    자신의 게시물 수, 자신의 팔로워 수, 자신의 팔로우 수를
+    context로 전달, 출력
     """
+    post_count = Post.objects.filter(author=request.user).count()
     context = {
-
+        'post_count': post_count,
     }
     return render(request, 'member/profile.html', context)
 

@@ -27,16 +27,17 @@ urlpatterns = [
     url(r'^post/', include('post.urls')),
     url(r'^$', views.index, name='index'),
 ]
-urlpatterns += static(
-    settings.MEDIA_URL,
-    document_root=settings.MEDIA_ROOT
-)
 if settings.DEBUG:
-    # urlpatterns += [
-    #     url(r'^static/(?P<path>.*)$', views.serve),
-    # ]
-    # urlpatterns += staticfiles_urlpatterns()
-    import debug_toolbar
-    urlpatterns += [
-        url(r'^__debug__/', include(debug_toolbar.urls)),
-    ]
+    urlpatterns += static(
+        settings.MEDIA_URL,
+        document_root=settings.MEDIA_ROOT
+    )
+# if settings.DEBUG:
+#     # urlpatterns += [
+#     #     url(r'^static/(?P<path>.*)$', views.serve),
+#     # ]
+#     # urlpatterns += staticfiles_urlpatterns()
+#     import debug_toolbar
+#     urlpatterns += [
+#         url(r'^__debug__/', include(debug_toolbar.urls)),
+#     ]

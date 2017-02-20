@@ -19,6 +19,8 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # 정적파일을 관리할 폴더 경로 지정
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
+# 정적파일을 모아서 서빙할 폴더 경로 지정, 테스트시 static.serve관련 에러 날 경우 반드시 추가해야 함
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 
 
 # Quick-start development settings - unsuitable for production
@@ -49,14 +51,14 @@ INSTALLED_APPS = [
     # 이후 ./manage.py shell_plus로 실행
     # models.py내용이 자동 임포트
     'django_extensions',
-    'debug_toolbar',
+    # 'debug_toolbar',
 
     'member.apps.MemberConfig',
     'post.apps.PostConfig',
 ]
 
 MIDDLEWARE = [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
