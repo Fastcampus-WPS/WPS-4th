@@ -91,4 +91,6 @@ for index, item in enumerate(items):
     youtube_id = item['id']['videoId']
     title = item['snippet']['title']
     published_date_str = item['snippet']['publishedAt']
+
+    # pip install python-dateutil
     published_date = parse(published_date_str)
