@@ -21,6 +21,7 @@ Pygments==2.2.0
 pyparsing==2.1.10
 rcssmin==1.0.6
 rjsmin==1.0.12
+selenium==3.0.2
 simplegeneric==0.8.1
 six==1.10.0
 sqlparse==0.2.2

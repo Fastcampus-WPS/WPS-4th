@@ -9,10 +9,11 @@
 """
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from post.models import Post
-from .forms import LoginForm, SignupForm
+from .forms import LoginForm, SignupForm, ChangeProfileImageModelForm, SignupModelForm
 
 
 def login_fbv(request):
@@ -71,6 +72,21 @@ def signup_fbv(request):
     return render(request, 'member/signup.html', context)
 
 
+def signup_model_form_fbv(request):
+    if request.method == 'POST':
+        form = SignupModelForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('post:list')
+    else:
+        form = SignupModelForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'member/signup.html', context)
+
+
 @login_required
 def profile(request):
     """
@@ -88,6 +104,7 @@ def profile(request):
     return render(request, 'member/profile.html', context)
 
 
+@login_required
 def change_profile_image(request):
     """
     해당 유저의 프로필 이미지를 바꾼다
@@ -101,7 +118,23 @@ def change_profile_image(request):
     6. profile.html에서 user의 프로필 이미지를 img태그를 사용해서 보여줌
         {{ MEDIA_URL }}을 사용
     """
-    pass
+    if request.method == 'POST':
+        # instance에 request.user를 넣어 기존 인스턴스의 필드를 수정하도록 함
+        form = ChangeProfileImageModelForm(
+            instance=request.user,
+            data=request.POST,
+            files=request.FILES
+        )
+        if form.is_valid():
+            form.save()
+            return redirect('member:profile')
+    else:
+        # instance에 request.user를 넣어 템플릿의 form에서 기존 인스턴스 필드의 정보를 나타내줌
+        form = ChangeProfileImageModelForm(instance=request.user)
+    context = {
+        'form': form,
+    }
+    return render(request, 'member/change_profile_image.html', context)
 
 
 def logout_fbv(request):

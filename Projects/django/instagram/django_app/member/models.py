@@ -38,6 +38,8 @@ class MyUser(PermissionsMixin, AbstractBaseUser):
     email = models.EmailField(blank=True)
     gender = models.CharField(max_length=1, choices=CHOICES_GENDER)
     nickname = models.CharField(max_length=20)
+    # 프로필 이미지
+    img_profile = models.ImageField(upload_to='user', blank=True)
     # 팔로우 목록을 나타내는 필드 구현
     # 언제 팔로우를 했는지도 나타내도록 함 (중간자모델을 사용해야 함)
     following = models.ManyToManyField(

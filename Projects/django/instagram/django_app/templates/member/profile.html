@@ -3,7 +3,9 @@
 {% block content %}
 	<div class="profile-container">
 		<div class="profile-top">
-			<img src="" alt="" class="img-profile">
+			<a href="{% url 'member:change_profile_image' %}">
+				<img src="{{ MEDIA_URL }}{{ user.img_profile }}" alt="" class="img-profile">
+			</a>
 			<div class="profile-text">
 				<div class="text-top">
 					<span class="profile-username">{{ user.username }}</span>
