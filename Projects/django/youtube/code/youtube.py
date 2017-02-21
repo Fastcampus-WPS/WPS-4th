@@ -7,9 +7,7 @@
 """
 import json
 import os
-from datetime import datetime
 
-from dateutil.parser import *
 import requests
 
 # 1. .conf폴더의 settings_local.json을 읽어온다
@@ -19,6 +17,8 @@ import requests
 #            이 출력되어야 함
 # 파이썬에서 파일 읽는 내장함수를 사용해서 결과를 다시 변수에 할당
 # 현재 파일 (youtube/code/youtube.py)
+from dateutil.parser import parse
+
 current_file_path = os.path.abspath(__file__)
 print('current_file_path : \n%s' % current_file_path)
 
@@ -88,5 +88,7 @@ print('page_info_results_per_page : %s' % page_info_results_per_page)
 
 items = result_dict['items']
 for index, item in enumerate(items):
+    youtube_id = item['id']['videoId']
     title = item['snippet']['title']
-    published_date = item['snippet']['publishedAt']
+    published_date_str = item['snippet']['publishedAt']
+    published_date = parse(published_date_str)
