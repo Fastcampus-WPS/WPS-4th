@@ -1,4 +1,5 @@
 """
+170221 숙제
 1. video app을 생성하고
 2. 유튜브 영상의 정보를 저장할 수 있는 Model구현, Migrations
 3. POST요청을 받으면 요청에서 온 키워드로 유튜브를 검색 후 결과를 DB에 저장하는 View구현
@@ -14,6 +15,12 @@
 4. 위 View를 나타낼 수 있는 Template구현
 5. View와 Template연결
 6. 실행해보기^^
+
+170222 AbstractUser를 상속받아 CustomUser구현
+1. member app생성
+2. AbstractUser를 상속받은 MyUser를 생성
+3. AUTH_USER_MODEL에 등록
+4. 마이그레이션 해본다
 """
 from django.test import LiveServerTestCase
 from selenium import webdriver

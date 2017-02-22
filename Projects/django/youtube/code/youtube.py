@@ -62,6 +62,7 @@ params = {
     'q': '걸스데이 민아 직캠',
     'maxResults': 30,
     'key': youtube_api_key,
+    'type': 'video',
 }
 r = requests.get('https://www.googleapis.com/youtube/v3/search', params=params)
 result = r.text

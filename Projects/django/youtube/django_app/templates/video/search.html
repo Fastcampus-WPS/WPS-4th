@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>YouTube</title>
+</head>
+<body>
+<form action="" method="POST">{% csrf_token %}
+	<input type="text" name="keyword">
+	<button type="submit">Search!</button>
+</form>
+
+<ul>
+	<li>
+		총 {{ videos.count }}개
+	</li>
+	{% for video in videos %}
+	<li>
+		<a href="https://www.youtube.com/watch?v={{ video.youtube_id }}">{{ video.title }}</a>
+		<p>{{ video.description }}</p>
+		<p>{{ video.published_date }}</p>
+	</li>
+	{% endfor %}
+</ul>
+</body>
+</html>
