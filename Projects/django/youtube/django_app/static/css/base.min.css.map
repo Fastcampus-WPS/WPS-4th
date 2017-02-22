@@ -1,0 +1,10 @@
+{
+	"version": 3,
+	"file": "base.min.css",
+	"sources": [
+		"../scss/base.scss",
+		"../scss/_variables.scss"
+	],
+	"names": [],
+	"mappings": "AACA,AAAA,IAAI,CAAE,AAAA,IAAI,AAAC,CACT,OAAO,CAAE,CAAC,CACV,MAAM,CAAE,CAAC,CACT,SAAS,CAAE,IAAI,CACf,WAAW,CAAE,MAAM,CACnB,KAAK,CCHa,OAAO,CDI1B,AACD,AAAA,CAAC,AAAC,CACA,eAAe,CAAE,IAAI,CACrB,KAAK,CCPa,OAAO,CDQ1B,AACD,AAAA,KAAK,AAAC,CACJ,KAAK,CAAE,KAAK,CACZ,MAAM,CAAE,MAAM,CACf"
+}

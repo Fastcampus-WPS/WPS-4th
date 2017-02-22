@@ -1,0 +1,19 @@
+@import "variables";
+html, body {
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5rem;
+  color: $color-text-common;
+}
+a {
+  text-decoration: none;
+  color: $color-text-common;
+}
+#wrap {
+  width: 800px;
+  margin: 0 auto;
+}
+#wrap > .content-container {
+  
+}
