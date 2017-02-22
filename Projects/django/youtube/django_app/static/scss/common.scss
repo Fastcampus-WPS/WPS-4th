@@ -20,6 +20,11 @@
   top: 50%;
   transform: translateY(-50%);
 }
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 ul, ol {
   padding: 0;
   margin: 0;
@@ -41,11 +46,13 @@ ul.video-list {
   li.video-item {
     position: relative;
     height: 150px;
+    margin-bottom: 10px;
 
     img.item-thumbnail {
       display: inline-block;
       width: 200px;
       height: 150px;
+      border-radius: 3px;
     }
     .item-content {
       position: absolute;
@@ -55,14 +62,15 @@ ul.video-list {
       width: 590px;
       height: 150px;
       display: inline-block;
+      overflow: hidden;
 
       .item-title {
         font-size: 16px;
         font-weight: bold;
-        margin-bottom: 3px;;
+        margin-bottom: 3px;
       }
       .item-desc {
-        margin-bottom: 5px;;
+        margin-bottom: 5px;
       }
       .item-date {
         color: $color-text-gray;

@@ -20,54 +20,56 @@ from dateutil.parser import parse
 from django.shortcuts import render
 
 from utils.settings import get_setting
-from video.models import Video
 
 
-def get_search_list_from_youtube(keyword):
+def search_from_youtube(keyword, page_token=None):
     youtube_api_key = get_setting()['youtube']['API_KEY']
     # 3. requests 라이브러리를 이용(pip install requests), GET요청으로 데이터를 받아온 후
     # 이렇게 Parameter와 URL을 분리합니다
     params = {
         'part': 'snippet',
         'q': keyword,
-        'maxResults': 5,
+        'maxResults': 15,
         'type': 'video',
         'key': youtube_api_key,
     }
+    # 페이지 토큰값이 전달되었을 때만 params에 해당 내용을 추가해서 요청
+    if page_token:
+        params['pageToken'] = page_token
+
     r = requests.get('https://www.googleapis.com/youtube/v3/search', params=params)
     result = r.text
 
     # 4. 해당 내용을 다시 json.loads()를 이용해 파이썬 객체로 변환
     result_dict = json.loads(result)
-
-    # 5. 이후 내부에 있는 검색결과를 적절히 루프하며 print해주기
-    # pprint(result_dict)
-    kind = result_dict['kind']
-    etag = result_dict['etag']
-    next_page_token = result_dict['nextPageToken']
-    region_code = result_dict['regionCode']
-    page_info = result_dict['pageInfo']
-    page_info_total_results = page_info['totalResults']
-    page_info_results_per_page = page_info['resultsPerPage']
-
-    print('kind : %s' % kind)
-    print('etag : %s' % etag)
-    print('next_page_token : %s' % next_page_token)
-    print('region_code : %s' % region_code)
-    print('page_info_total_results : %s' % page_info_total_results)
-    print('page_info_results_per_page : %s' % page_info_results_per_page)
-
-    items = result_dict['items']
-    return items
+    return result_dict
 
 
 def search(request):
-    # 검색결과를 담을 리스트
     videos = []
-    keyword = request.GET.get('keyword', '').strip()
-    if keyword != '':
-        items = get_search_list_from_youtube(keyword)
+    context = {
+        'videos': videos,
+    }
 
+    keyword = request.GET.get('keyword', '').strip()
+    page_token = request.GET.get('page_token')
+
+    if keyword != '':
+        # 검색 결과를 받아옴
+        search_result = search_from_youtube(keyword, page_token)
+
+        # 검색결과에서 이전/다음 토큰, 전체 결과 개수를 가져와
+        # 템플릿에 전달할 context객체에 할당
+        next_page_token = search_result.get('nextPageToken')
+        prev_page_token = search_result.get('prevPageToken')
+        total_results = search_result['pageInfo'].get('totalResults')
+        context['next_page_token'] = next_page_token
+        context['prev_page_token'] = prev_page_token
+        context['total_results'] = total_results
+        context['keyword'] = keyword
+
+        # 검색결과에서 'items'키를 갖는 list를 items변수에 할당 후 loop
+        items = search_result['items']
         for item in items:
             published_date_str = item['snippet']['publishedAt']
 
@@ -87,8 +89,5 @@ def search(request):
                 'url_thumbnail': url_thumbnail,
             }
             videos.append(cur_item_dict)
-    # POST, GET요청 모두 results키에 값을 전달하지만, GET의 경우에는 해당내용이 비어있음
-    context = {
-        'videos': videos,
-    }
+
     return render(request, 'video/search.html', context)

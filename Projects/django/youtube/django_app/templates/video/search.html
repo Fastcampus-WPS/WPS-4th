@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="search-container">
-  <form action="">
+  <form action="" class="search-form">
   	<input type="text" name="keyword">
   	<button type="submit" class="btn">Search!</button>
   </form>
@@ -12,7 +12,7 @@
   	<li class="video-item">
   		<img src="{{ video.url_thumbnail }}" alt="" class="item-thumbnail">
       <div class="item-content">
-        <div class="vcenter">
+        <div class="vcenter ellipsis">
       		<a href="https://www.youtube.com/watch?v={{ video.youtube_id }}" class="item-title">{{ video.title }}</a>
       		<p class="item-desc">{{ video.description }}</p>
       		<p class="item-date">{{ video.published_date }}</p>
@@ -21,5 +21,28 @@
   	</li>
   	{% endfor %}
   </ul>
+
+	<div>
+		{% if prev_page_token %}
+		<form action="">
+			<input type="hidden" name="keyword" value="{{ keyword }}">
+			<input type="hidden" name="page_token" value="{{ prev_page_token }}">
+			<button type="submit" class="btn">Prev</button>
+		</form>
+		{% endif %}
+
+		{% if next_page_token %}
+		<form action="">
+			<input type="hidden" name="keyword" value="{{ keyword }}">
+			<input type="hidden" name="page_token" value="{{ next_page_token }}">
+			<button type="submit" class="btn">Next</button>
+		</form>
+		{% endif %}
+
+
+
+
+
+	</div>
 </div>
 {% endblock %}
