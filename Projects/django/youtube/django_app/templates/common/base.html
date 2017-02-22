@@ -6,9 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>YouTube Bookmark Application</title>
-  <link rel="stylesheet" href="{% static 'css/base.min.css' %}?time={{ current_time }}">
-  <link rel="stylesheet" href="{% static 'css/common.min.css' %}?time={{ current_time }}">
-  <link rel="stylesheet" href="{% static 'css/search.min.css' %}?time={{ current_time }}">
+  <link rel="stylesheet" href="{% static 'css/base.min.css' %}?{% now 'c' %}">
+  <link rel="stylesheet" href="{% static 'css/common.min.css' %}?{% now 'c' %}">
+  <link rel="stylesheet" href="{% static 'css/search.min.css' %}?{% now 'c' %}">
 </head>
 <body>
   <div id="wrap">

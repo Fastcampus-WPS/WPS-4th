@@ -22,20 +22,20 @@
   	{% endfor %}
   </ul>
 
-	<div>
+	<div class="btn-container">
 		{% if prev_page_token %}
-		<form action="">
+		<form action="" class="inline">
 			<input type="hidden" name="keyword" value="{{ keyword }}">
 			<input type="hidden" name="page_token" value="{{ prev_page_token }}">
-			<button type="submit" class="btn">Prev</button>
+			<button type="submit" class="btn btn-pagination">Prev</button>
 		</form>
 		{% endif %}
 
 		{% if next_page_token %}
-		<form action="">
+		<form action="" class="inline form-right">
 			<input type="hidden" name="keyword" value="{{ keyword }}">
 			<input type="hidden" name="page_token" value="{{ next_page_token }}">
-			<button type="submit" class="btn">Next</button>
+			<button type="submit" class="btn btn-pagination">Next</button>
 		</form>
 		{% endif %}
 
