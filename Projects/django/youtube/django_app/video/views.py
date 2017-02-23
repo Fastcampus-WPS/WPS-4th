@@ -85,6 +85,10 @@ def search(request):
             description = item['snippet']['description']
             published_date = parse(published_date_str)
             url_thumbnail = item['snippet']['thumbnails']['high']['url']
+            is_exist = BookmarkVideo.objects.filter(
+                user=request.user,
+                video__youtube_id=youtube_id
+            ).exists()
 
             # 현재 item을 dict로 정리
             cur_item_dict = {
@@ -93,6 +97,7 @@ def search(request):
                 'published_date': published_date,
                 'youtube_id': youtube_id,
                 'url_thumbnail': url_thumbnail,
+                'is_exist': is_exist,
             }
             videos.append(cur_item_dict)
 
