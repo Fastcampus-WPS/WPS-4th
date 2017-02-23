@@ -1,0 +1,20 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+	<div class="bookmark-list-container">
+		<ul class="video-list">
+			{% for video in bookmarks %}
+			<li class="video-item">
+				<img src="{{ video.url_thumbnail }}" alt="" class="item-thumbnail">
+				<div class="item-content">
+					<div class="vcenter ellipsis">
+						<a href="" class="item-title">{{ video.title }}</a>
+						<p class="item-desc">{{ video.description }}</p>
+						<p class="item-date">{{ video.published_date }}</p>
+					</div>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
+	</div>
+{% endblock %}
