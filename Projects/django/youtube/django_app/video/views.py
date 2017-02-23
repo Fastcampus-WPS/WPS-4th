@@ -17,9 +17,11 @@ import json
 
 import requests
 from dateutil.parser import parse
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
 
 from utils.settings import get_setting
+from video.models import Video
 
 
 def search_from_youtube(keyword, page_token=None):
@@ -46,6 +48,9 @@ def search_from_youtube(keyword, page_token=None):
 
 
 def search(request):
+    # print(request.path_info)
+    # print(request.get_full_path())
+
     videos = []
     context = {
         'videos': videos,
@@ -91,3 +96,26 @@ def search(request):
             videos.append(cur_item_dict)
 
     return render(request, 'video/search.html', context)
+
+
+@login_required
+def add_bookmark(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        description = request.POST['description']
+        youtube_id = request.POST['youtube_id']
+        published_date_str = request.POST['published_date']
+        published_date = parse(published_date_str)
+        prev_path = request.POST['path']
+
+        defaults = {
+            'title': title,
+            'description': description,
+            'published_date': published_date
+        }
+        video, _ = Video.objects.get_or_create(
+            defaults=defaults,
+            youtube_id=youtube_id
+        )
+        request.user.bookmark_videos.add(video)
+        return redirect(prev_path)

@@ -16,6 +16,15 @@
       		<a href="https://www.youtube.com/watch?v={{ video.youtube_id }}" class="item-title">{{ video.title }}</a>
       		<p class="item-desc">{{ video.description }}</p>
       		<p class="item-date">{{ video.published_date }}</p>
+
+	        <form action="{% url 'video:add_bookmark' %}" method="POST">{% csrf_token %}
+		        <input type="hidden" name="title" value="{{ video.title }}">
+		        <input type="hidden" name="description" value="{{ video.description }}">
+		        <input type="hidden" name="published_date" value="{{ video.published_date }}">
+		        <input type="hidden" name="youtube_id" value="{{ video.youtube_id }}">
+		        <input type="hidden" name="path" value="{{ request.get_full_path }}">
+		        <button type="submit">Add Bookmark!</button>
+	        </form>
         </div>
       </div>
   	</li>
