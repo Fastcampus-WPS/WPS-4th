@@ -18,6 +18,7 @@ import json
 import requests
 from dateutil.parser import parse
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, redirect
 
 from member.models import BookmarkVideo
@@ -152,7 +153,18 @@ def bookmark_toggle(request):
 
 @login_required
 def bookmark_list(request):
-    bookmarks = request.user.bookmarkvideo_set.select_related('video')
+    all_bookmarks = request.user.bookmarkvideo_set.select_related('video')
+
+    # 전체 북마크 리스트를 페이지네이션 처리
+    paginator = Paginator(all_bookmarks, 5)
+    page = request.GET.get('page')
+    try:
+        bookmarks = paginator.page(page)
+    except PageNotAnInteger:
+        bookmarks = paginator.page(1)
+    except EmptyPage:
+        bookmarks = paginator.page(paginator.num_pages)
+
     context = {
         'bookmarks': bookmarks,
     }

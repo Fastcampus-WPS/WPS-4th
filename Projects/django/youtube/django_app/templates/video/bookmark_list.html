@@ -17,5 +17,19 @@
 			</li>
 			{% endfor %}
 		</ul>
+
+		<div class="paginator">
+			{% if bookmarks.has_previous %}
+				<a href="?page={{ bookmarks.previous_page_number }}" class="btn btn-pagination">Prev</a>
+			{% endif %}
+
+			<span>
+				Page {{ bookmarks.number }} of {{ bookmarks.paginator.num_pages }}
+			</span>
+
+			{% if bookmarks.has_next %}
+				<a href="?page={{ bookmarks.next_page_number }}" class="btn btn-pagination">Next</a>
+			{% endif %}
+		</div>
 	</div>
 {% endblock %}
