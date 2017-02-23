@@ -20,6 +20,7 @@ from dateutil.parser import parse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
+from member.models import BookmarkVideo
 from utils.settings import get_setting
 from video.models import Video
 
@@ -119,13 +120,25 @@ def bookmark_add(request):
             defaults=defaults,
             youtube_id=youtube_id
         )
-        request.user.bookmark_videos.add(video)
+        # 중간자 모델 없이 M2M필드에 바로 인스턴스를 추가할 때
+        # request.user.bookmark_videos.add(video)
+
+        # BookmarkVideo 중간자모델의 매니저를 직접 사용
+        # BookmarkVideo.objects.create(
+        #     user=request.user,
+        #     video=video
+        # )
+
+        # MyUser와 중간자모델을 연결시켜주는 related_manager를 사용
+        request.user.bookmarkvideo_set.create(
+            video=video
+        )
         return redirect(prev_path)
 
 
 @login_required
 def bookmark_list(request):
-    bookmarks = request.user.bookmark_videos.all()
+    bookmarks = request.user.bookmarkvideo_set.select_related('video')
     context = {
         'bookmarks': bookmarks,
     }

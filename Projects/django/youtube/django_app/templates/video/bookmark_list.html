@@ -3,14 +3,15 @@
 {% block content %}
 	<div class="bookmark-list-container">
 		<ul class="video-list">
-			{% for video in bookmarks %}
+			{% for bookmark in bookmarks %}
 			<li class="video-item">
-				<img src="{{ video.url_thumbnail }}" alt="" class="item-thumbnail">
+				<img src="{{ bookmark.video.url_thumbnail }}" alt="" class="item-thumbnail">
 				<div class="item-content">
 					<div class="vcenter ellipsis">
-						<a href="" class="item-title">{{ video.title }}</a>
-						<p class="item-desc">{{ video.description }}</p>
-						<p class="item-date">{{ video.published_date }}</p>
+						<a href="" class="item-title">{{ bookmark.video.title }}</a>
+						<p class="item-desc">{{ bookmark.video.description }}</p>
+						<p class="item-date">게시일자 : {{ bookmark.video.published_date }}</p>
+						<p class="item-date">북마크일자 : {{ bookmark.created_date }}</p>
 					</div>
 				</div>
 			</li>
