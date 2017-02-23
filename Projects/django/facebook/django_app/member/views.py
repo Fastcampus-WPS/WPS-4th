@@ -1,5 +1,6 @@
-from django.conf import settings
 from django.shortcuts import render
+
+from facebook import settings
 
 
 def login_fbv(request):
