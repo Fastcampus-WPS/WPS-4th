@@ -17,18 +17,20 @@
       		<p class="item-desc">{{ video.description }}</p>
       		<p class="item-date">{{ video.published_date }}</p>
 
-	        <form action="{% url 'video:bookmark_add' %}" method="POST">{% csrf_token %}
+	        <form action="{% url 'video:bookmark_toggle' %}" method="POST">{% csrf_token %}
 		        <input type="hidden" name="title" value="{{ video.title }}">
 		        <input type="hidden" name="description" value="{{ video.description }}">
 		        <input type="hidden" name="published_date" value="{{ video.published_date|date:'c' }}">
 		        <input type="hidden" name="youtube_id" value="{{ video.youtube_id }}">
 		        <input type="hidden" name="url_thumbnail" value="{{ video.url_thumbnail }}">
 		        <input type="hidden" name="path" value="{{ request.get_full_path }}">
-		        {% if video.is_exist %}
-			      <button type="button" class="btn">Already marked</button>
-		        {% else %}
-		        <button type="submit" class="btn">Add Bookmark!</button>
-		        {% endif %}
+	          <button type="submit" class="btn">
+		          {% if video.is_exist %}
+			          Remove Bookmark
+		          {% else %}
+		            Add Bookmark
+		          {% endif %}
+	          </button>
 	        </form>
         </div>
       </div>
