@@ -2,8 +2,9 @@
 
 {% block content %}
 <div class="index-container">
-	<form action="" method="POST">
-
+	<form action="" method="POST">{% csrf_token %}
+		{{ form }}
+		<button type="submit">Send SMS</button>
 	</form>
 </div>
 {% endblock %}

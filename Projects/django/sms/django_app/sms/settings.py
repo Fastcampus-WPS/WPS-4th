@@ -15,15 +15,13 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 import json
 import os
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-ROOT_DIR = os.path.dirname(BASE_DIR)
-CONF_DIR = os.path.join(ROOT_DIR, '.conf')
-TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
-config = json.loads(open(os.path.join(CONF_DIR, 'settings_local.json')).read())
+from pathlib import Path
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+config_file_content = Path(__file__).parents[2].joinpath('.conf', 'settings_local.json').open().read()
+config = json.loads(config_file_content)
+
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config['django']['secret_key']
