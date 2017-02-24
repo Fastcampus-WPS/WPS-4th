@@ -9,6 +9,10 @@ def index(request):
         form = SMSForm(request.POST)
         if form.is_valid():
             numbers = form.cleaned_data['recipient_numbers']
+            content = form.cleaned_data['content']
+            for number in numbers:
+                pass
+                # send_sms(number, content)
             return HttpResponse(', '.join(numbers))
     else:
         form = SMSForm(
