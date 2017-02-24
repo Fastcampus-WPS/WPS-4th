@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
 from sms.forms import SMSForm
@@ -6,6 +7,9 @@ from sms.forms import SMSForm
 def index(request):
     if request.method == 'POST':
         form = SMSForm(request.POST)
+        if form.is_valid():
+            numbers = form.cleaned_data['recipient_numbers']
+            return HttpResponse(', '.join(numbers))
     else:
         form = SMSForm(
             initial={
