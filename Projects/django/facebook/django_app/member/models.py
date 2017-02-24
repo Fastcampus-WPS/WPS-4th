@@ -24,7 +24,7 @@ from django.utils.crypto import get_random_string
 
 
 class MyUser(AbstractUser):
-    pass
+    img_profile = models.ImageField(upload_to='user', blank=True)
     # CHOICES_USER_TYPE = (
     #     ('django', 'Django'),
     #     ('facebook', 'Facebook'),
