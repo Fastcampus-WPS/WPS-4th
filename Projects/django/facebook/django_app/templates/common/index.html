@@ -1,0 +1,15 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+	<div class="index-container">
+		<h1>Index page</h1>
+		{% if user.is_authenticated %}
+			<div>
+				<span>{{ user.username }}님으로 로그인 되었습니다.</span>
+				<a href="{% url 'member:logout' %}">로그아웃</a>
+			</div>
+		{% else %}
+			<a href="{% url 'member:login' %}">로그인</a>
+		{% endif %}
+	</div>
+{% endblock %}

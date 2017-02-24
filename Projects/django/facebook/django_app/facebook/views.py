@@ -1,5 +1,5 @@
-from django.shortcuts import redirect
+from django.shortcuts import render
 
 
 def index(request):
-    return redirect('member:login')
+    return render(request, 'common/index.html')
