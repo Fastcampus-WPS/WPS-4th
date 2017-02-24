@@ -53,3 +53,4 @@ def login_facebook(request):
         pprint(dict_debug_token)
         USER_ID = dict_debug_token['data']['user_id']
         print('USER_ID : %s' % USER_ID)
+
