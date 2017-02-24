@@ -16,6 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from . import views as sms_view
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^$', sms_view.index, name='index'),
 ]

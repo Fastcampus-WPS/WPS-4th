@@ -19,6 +19,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 CONF_DIR = os.path.join(ROOT_DIR, '.conf')
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 config = json.loads(open(os.path.join(CONF_DIR, 'settings_local.json')).read())
 
 # Quick-start development settings - unsuitable for production
@@ -58,7 +59,9 @@ ROOT_URLCONF = 'sms.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            TEMPLATE_DIR,
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
