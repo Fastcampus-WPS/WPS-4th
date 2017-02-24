@@ -11,7 +11,8 @@
 	<div>
 		{% if user.is_authenticated %}
 			<div>
-				<span>{{ user.username }}님으로 로그인 되었습니다.</span>
+				<img src="{{ MEDIA_URL }}{{ user.img_profile }}" alt="" width="100px">
+				<span>{{ user }}님으로 로그인 되었습니다.</span>
 				<a href="{% url 'member:logout' %}">로그아웃</a>
 			</div>
 		{% else %}
