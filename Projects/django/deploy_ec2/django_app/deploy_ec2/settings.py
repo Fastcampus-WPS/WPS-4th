@@ -93,8 +93,12 @@ WSGI_APPLICATION = 'deploy_ec2.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': config['db']['engine'],
+        'NAME': config['db']['name'],
+        'USER': config['db']['user'],
+        'PASSWORD': config['db']['password'],
+        'HOST': config['db']['host'],
+        'PORT': config['db']['port'],
     }
 }
 
