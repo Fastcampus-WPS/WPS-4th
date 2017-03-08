@@ -4,6 +4,7 @@ __dev*/
 *.sqlite3
 *.sqlite
 media/
+static_root/
 
 # Config folders
 .conf-secret/
