@@ -60,12 +60,19 @@ STATICFILES_DIRS = (
 )
 
 if STORAGE_S3:
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    # Static files
     STATICFILES_STORAGE = 'deploy_ec2.storages.StaticStorage'
     STATICFILES_LOCATION = 'static'
     STATIC_URL = 'https://{custom_domain}/{staticfiles_location}/'.format(
         custom_domain=AWS_S3_CUSTOM_DOMAIN,
         staticfiles_location=STATICFILES_LOCATION,
+    )
+    # Media files
+    DEFAULT_FILE_STORAGE = 'deploy_ec2.storages.MediaStorage'
+    MEDIAFILES_LOCATION = 'media'
+    MEDIA_URL = 'https://{custom_domain}/{mediafiles_location}/'.format(
+        custom_domain=AWS_S3_CUSTOM_DOMAIN,
+        mediafiles_location=MEDIAFILES_LOCATION
     )
 else:
     STATIC_ROOT = os.path.join(ROOT_DIR, 'static_root')
