@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index, name='index'),
 ]
-if settings.DEBUG:
+if settings.DEBUG and settings.STORAGE_S3 is False:
     urlpatterns += static(
         settings.MEDIA_URL,
         document_root=settings.MEDIA_ROOT

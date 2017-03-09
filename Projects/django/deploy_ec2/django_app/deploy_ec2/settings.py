@@ -13,25 +13,15 @@ import json
 import os
 
 DEBUG = os.environ.get('MODE') == 'DEBUG'
+STORAGE_S3 = os.environ.get('STORAGE') == 'S3' or DEBUG is False
 print('DEBUG : {}'.format(DEBUG))
+print('STORAGE_S3 : {}'.format(STORAGE_S3))
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 CONF_DIR = os.path.join(ROOT_DIR, '.conf-secret')
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
-
-
-# static settings
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
-STATIC_ROOT = os.path.join(ROOT_DIR, 'static_root')
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    STATIC_DIR,
-)
-# media
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(ROOT_DIR, 'media')
 
 # 1. settings_common.json의 경로를 CONFIG_FILE_COMMON에 할당
 CONFIG_FILE_COMMON = os.path.join(CONF_DIR, 'settings_common.json')
@@ -53,6 +43,36 @@ for key, key_dict in config_common.items():
     for inner_key, inner_key_dict in key_dict.items():
         config[key][inner_key] = inner_key_dict
 
+
+# AWS
+AWS_ACCESS_KEY_ID = config['aws']['access_key_id']
+AWS_SECRET_ACCESS_KEY = config['aws']['secret_access_key']
+
+AWS_S3_HOST = 's3.{}.amazonaws.com'.format(config['aws']['s3_region'])
+AWS_S3_SIGNATURE_VERSION = config['aws']['s3_signature_version']
+AWS_STORAGE_BUCKET_NAME = config['aws']['s3_storage_bucket_name']
+AWS_S3_CUSTOM_DOMAIN = '{}.s3.amazonaws.com'.format(AWS_STORAGE_BUCKET_NAME)
+
+# static settings
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (
+    STATIC_DIR,
+)
+
+if STORAGE_S3:
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    STATICFILES_STORAGE = 'deploy_ec2.storages.StaticStorage'
+    STATICFILES_LOCATION = 'static'
+    STATIC_URL = 'https://{custom_domain}/{staticfiles_location}/'.format(
+        custom_domain=AWS_S3_CUSTOM_DOMAIN,
+        staticfiles_location=STATICFILES_LOCATION,
+    )
+else:
+    STATIC_ROOT = os.path.join(ROOT_DIR, 'static_root')
+    STATIC_URL = '/static/'
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(ROOT_DIR, 'media')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
@@ -70,6 +90,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'storages',
 
     'member',
 ]
