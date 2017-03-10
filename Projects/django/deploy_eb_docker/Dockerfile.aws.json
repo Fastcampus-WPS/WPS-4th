@@ -1,0 +1,24 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "volumes": [
+    {
+      "name": "fc-deploy-eb",
+      "host": {
+        "sourcePath": "var/app/current/django_app"
+      }
+    }
+  ],
+  "containerDefinitions": [
+    {
+      "name": "fc-deploy-eb",
+      "essential": true,
+      "memory": 512,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 4040
+        }
+      ]
+    }
+  ]
+}
