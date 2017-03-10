@@ -5,6 +5,7 @@ __dev*/
 *.sqlite
 media/
 static_root/
+_Dockerfile*
 
 # Config folders
 .conf-secret/
