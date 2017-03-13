@@ -20,6 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 CONF_DIR = os.path.join(ROOT_DIR, '.conf-secret')
 CONFIG_FILE_COMMON = os.path.join(CONF_DIR, 'settings_common.json')
 if DEBUG:
