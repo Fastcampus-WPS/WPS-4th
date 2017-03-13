@@ -2,9 +2,9 @@
   "AWSEBDockerrunVersion": 2,
   "volumes": [
     {
-      "name": "fc-deploy-eb",
+      " ame": "fc-deploy-eb",
       "host": {
-        "sourcePath": "var/app/current/django_app"
+        "sourcePath": "/var/app/current/django_app"
       }
     }
   ],
