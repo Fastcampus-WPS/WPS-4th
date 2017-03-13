@@ -15,33 +15,8 @@ User = get_user_model()
 
 
 def post_list(request):
-    post_list = Post.objects.select_related('author')
-    post_dict_list = []
-
-    # 전체 Post를 loop
-    for post in post_list:
-        # 각 Photo의 정보
-        cur_post_dict = {
-            'pk': post.pk,
-            'photo_list': [],
-            'created_date': post.created_date,
-            'author': {
-                'pk': post.author.pk,
-                'username': post.author.username,
-            }
-        }
-        photo_list = post.postphoto_set.all()
-        for post_photo in photo_list:
-            photo_dict = {
-                'pk': post_photo.pk,
-                'photo': post_photo.photo.url,
-            }
-            cur_post_dict['photo_list'].append(photo_dict)
-
-        post_dict_list.append(cur_post_dict)
-
     context = {
-        'post_list': post_dict_list,
+        'post_list': [post.to_dict() for post in Post.objects.select_related()]
     }
     return JsonResponse(data=context)
 
