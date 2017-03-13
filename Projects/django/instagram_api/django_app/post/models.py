@@ -10,3 +10,6 @@ class Post(models.Model):
 class PostPhoto(models.Model):
     post = models.ForeignKey(Post)
     photo = models.ImageField(upload_to='post')
+
+    class Meta:
+        order_with_respect_to = 'post'
