@@ -1,3 +1,4 @@
+import os
 import random
 
 from django.contrib.auth import get_user_model
@@ -112,7 +113,8 @@ class PostPhotoTest(APITestCaseAuthMixin, APILiveServerTestCase):
         url = reverse('api:photo-create')
 
         # test_images.jpg파일을 이용해서 생성
-        with open('test_images.jpg') as fp:
+        file_path = os.path.join(os.path.dirname(__file__), 'test_image.jpg')
+        with open(file_path, 'rb') as fp:
             data = {
                 'post': post.id,
                 'photo': fp
