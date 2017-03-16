@@ -1,3 +1,5 @@
+import random
+
 from django.contrib.auth import get_user_model
 from django.urls import NoReverseMatch
 from django.urls import resolve
@@ -20,6 +22,13 @@ class PostTest(APILiveServerTestCase):
             password=self.test_password,
         )
         return user
+
+    def create_user_and_login(self):
+        self.create_user()
+        self.client.login(
+            username=self.test_username,
+            password=self.test_password,
+        )
 
     def create_post(self, num=1):
         """
@@ -68,7 +77,22 @@ class PostTest(APILiveServerTestCase):
         self.assertEqual(Post.objects.exists(), False)
 
     def test_post_list(self):
-        pass
+        # Post생성 위해 유저 생성 후 로그인
+        self.create_user_and_login()
+
+        # 생성할 Post개수 지정
+        num = random.randrange(1, 50)
+
+        # num만큼 Post생성
+        self.create_post(num)
+        url = reverse('api:post-list')
+        response = self.client.get(url)
+
+        # status_code확인
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+        # num만큼 생성되었는지 확인
+        self.assertEqual(len(response.data), num)
 
     def test_post_update_partial(self):
         pass
