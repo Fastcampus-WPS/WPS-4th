@@ -120,5 +120,19 @@ class PostPhotoTest(APITestCaseAuthMixin, APILiveServerTestCase):
                 'photo': fp
             }
             response = self.client.post(url, data)
-            print(response.status_code)
-            print(response.data)
+
+        # status_code확인
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+        # key 확인
+        self.assertIn('post', response.data)
+        self.assertIn('photo', response.data)
+
+        # value확인
+        self.assertEqual(post.pk, response.data['post'])
+
+    def test_cannot_photo_add_to_post_not_authenticated(self):
+        pass
+
+    def test_cannot_photo_add_to_post_user_is_not_author(self):
+        pass
