@@ -16,9 +16,15 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from post import urls as post_urls
+from post.urls import views as post_urls
+from post.urls import apis as post_apis_urls
+
+api_urlpatterns = [
+    url(r'^post/', include(post_apis_urls)),
+]
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^post/', include(post_urls)),
+    url(r'^api/', include(api_urlpatterns, namespace='api')),
 ]

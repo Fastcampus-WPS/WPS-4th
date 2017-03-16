@@ -19,6 +19,10 @@ class PostTest(APILiveServerTestCase):
         )
         return user
 
+    def test_apis_url_exist(self):
+        reverse('api:post-list')
+        reverse('api:post-detail')
+
     def test_post_create(self):
         # Post를 만들 유저를 생성 및 로그인
         user = self.create_user()
@@ -32,7 +36,7 @@ class PostTest(APILiveServerTestCase):
         response = self.client.post(url)
 
         # response의 status_code가 201(Created)이어야 함
-        self.assertEqual(response, status.HTTP_201_CREATED)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         # 생성 후 Post인스턴스가 총 1개여야 함
         self.assertEqual(Post.objects.count(), 1)
         # 생성된 Post인스턴스의 author pk(id)가 테스트시 생성한 User의 pk(id)와 같아야 함
