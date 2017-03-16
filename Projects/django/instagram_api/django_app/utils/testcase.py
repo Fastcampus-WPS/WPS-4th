@@ -16,8 +16,9 @@ class APITestCaseAuthMixin(object):
         return user
 
     def create_user_and_login(self, client):
-        self.create_user()
+        user = self.create_user()
         client.login(
             username=self.test_username,
             password=self.test_password,
         )
+        return user

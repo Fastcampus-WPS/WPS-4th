@@ -95,9 +95,28 @@ class PostTest(APITestCaseAuthMixin, APILiveServerTestCase):
         pass
 
 
-class PostPhotoTest(APILiveServerTestCase):
+class PostPhotoTest(APITestCaseAuthMixin, APILiveServerTestCase):
     def test_photo_add_to_post(self):
         # 유저 생성 및 로그인
+        user = self.create_user_and_login(self.client)
+
         # 해당 유저로 Post생성
+        url = reverse('api:post-list')
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Post.objects.count(), 1)
+        post = Post.objects.first()
+        self.assertEqual(post.author, user)
+
         # 생성한 Post에 PostPhoto를 추가
-        pass
+        url = reverse('api:photo-create')
+
+        # test_images.jpg파일을 이용해서 생성
+        with open('test_images.jpg') as fp:
+            data = {
+                'post': post.id,
+                'photo': fp
+            }
+            response = self.client.post(url, data)
+            print(response.status_code)
+            print(response.data)
