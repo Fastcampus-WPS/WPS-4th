@@ -8,28 +8,12 @@ from rest_framework import status
 from rest_framework.test import APILiveServerTestCase
 
 from post.models import Post
+from utils.testcase import APITestCaseAuthMixin
 
 User = get_user_model()
 
 
-class PostTest(APILiveServerTestCase):
-    test_username = 'test_username'
-    test_password = 'test_password'
-
-    def create_user(self):
-        user = User.objects.create_user(
-            username=self.test_username,
-            password=self.test_password,
-        )
-        return user
-
-    def create_user_and_login(self):
-        self.create_user()
-        self.client.login(
-            username=self.test_username,
-            password=self.test_password,
-        )
-
+class PostTest(APITestCaseAuthMixin, APILiveServerTestCase):
     def create_post(self, num=1):
         """
         :param num: 생성할 Post수
@@ -82,7 +66,7 @@ class PostTest(APILiveServerTestCase):
 
     def test_post_list(self):
         # Post생성 위해 유저 생성 후 로그인
-        self.create_user_and_login()
+        self.create_user_and_login(self.client)
 
         # 생성할 Post개수 지정
         num = random.randrange(1, 50)
@@ -108,4 +92,12 @@ class PostTest(APILiveServerTestCase):
         pass
 
     def test_post_destroy(self):
+        pass
+
+
+class PostPhotoTest(APILiveServerTestCase):
+    def test_photo_add_to_post(self):
+        # 유저 생성 및 로그인
+        # 해당 유저로 Post생성
+        # 생성한 Post에 PostPhoto를 추가
         pass
