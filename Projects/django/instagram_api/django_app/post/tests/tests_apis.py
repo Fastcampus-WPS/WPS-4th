@@ -1,4 +1,6 @@
 from django.contrib.auth import get_user_model
+from django.urls import NoReverseMatch
+from django.urls import resolve
 from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APILiveServerTestCase
@@ -20,8 +22,11 @@ class PostTest(APILiveServerTestCase):
         return user
 
     def test_apis_url_exist(self):
-        reverse('api:post-list')
-        reverse('api:post-detail')
+        try:
+            resolve('/api/post/')
+            resolve('/api/post/1/')
+        except NoReverseMatch as e:
+            self.fail(e)
 
     def test_post_create(self):
         # Post를 만들 유저를 생성 및 로그인
