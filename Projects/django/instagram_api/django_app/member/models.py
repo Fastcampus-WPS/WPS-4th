@@ -33,6 +33,37 @@ class MyUser(AbstractUser):
         through='Relationship',
     )
 
+    def follow(self, user):
+        """
+        이미 follow한 사람일 경우 안되도록 unique_together를 설정 (Relationship)
+        상대방이 나를 block했을 경우 raise Exception(msg)
+        """
+        self.relations_from_user.create(
+            to_user=user,
+            relation_type=Relationship.TYPE_FOLLOW
+        )
+
+    def block(self, user):
+        pass
+
+    @property
+    def following(self):
+        relations = self.relations_from_user.filter(
+            relation_type=Relationship.TYPE_FOLLOW
+        )
+        return MyUser.objects.filter(id__in=relations.values('to_user_id'))
+
+    @property
+    def followers(self):
+        pass
+
+    @property
+    def block_users(self):
+        pass
+
+    @property
+    def friends(self):
+        pass
 
 class Relationship(models.Model):
     TYPE_FOLLOW = 'f'
