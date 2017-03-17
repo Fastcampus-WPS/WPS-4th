@@ -34,10 +34,20 @@ class PostSerializer(serializers.ModelSerializer):
             },
         ]
 
-    1. 관련 테스트코드 작성
-        post_list, post_create부분
-    2. 해당 테스트코드가 작동하도록 PostSerializer를 수정 및 PostPhotoSerializer작성
-    3. 테스트 및 포스트맨 작동 확인
+        1. 관련 테스트코드 작성
+            post_list, post_create부분
+        2. 해당 테스트코드가 작동하도록 PostSerializer를 수정 및 PostPhotoSerializer작성
+        3. 테스트 및 포스트맨 작동 확인
+        4. postphoto_set의 이름을 photo_list로 변경
+            http://www.django-rest-framework.org/api-guide/serializers/#specifying-fields-explicitly
+
+    목표 3.
+        post-list요청시 Pagination될 수 있도록 변경
+
+    1. 관련 테스트코드 작성 (가능하면)
+    2. Pagination문서 보고 CustomPagination구현
+    3. pagination_class에 지정
+    4. 요청결과를 확인
     """
     author = UserSerializer(read_only=True)
     postphoto_set = PostPhotoSerializer(many=True, read_only=True)
