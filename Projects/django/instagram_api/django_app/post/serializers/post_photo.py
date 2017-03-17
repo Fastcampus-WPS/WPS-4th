@@ -11,6 +11,7 @@ class PostPhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostPhoto
         fields = (
+            'pk',
             'post',
-            'photo'
+            'photo',
         )
