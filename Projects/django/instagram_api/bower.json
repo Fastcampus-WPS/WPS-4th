@@ -1,0 +1,21 @@
+{
+  "name": "instagram_api",
+  "homepage": "https://github.com/LeeHanYeong/Fastcampus-WPS-4th",
+  "authors": [
+    "Lee HanYeong <dev@azelf.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "swiper": "^3.4.2",
+    "jquery": "^3.2.0"
+  }
+}

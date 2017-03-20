@@ -28,8 +28,10 @@ MEDIA_URL = '/media/'
 
 # Static
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
+BOWER_DIR = os.path.join(ROOT_DIR, 'bower_components')
 STATICFILES_DIRS = (
     STATIC_DIR,
+    BOWER_DIR,
 )
 STATIC_URL = '/static/'
 

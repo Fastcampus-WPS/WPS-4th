@@ -8,6 +8,7 @@ static_root/
 _Dockerfile*
 **/django_app/static/css/
 
+# bower packages
 bower_components/
 
 # Config folders
