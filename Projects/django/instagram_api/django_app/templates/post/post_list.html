@@ -3,89 +3,8 @@
 {% block content %}
 <div class="post-list-container">
   {% for post in posts %}
-  <article class="post">
-    <header class="post-header">
-      <span class="header-username">{{ post.author.username }}</span>
-	    <!-- Post delete form start -->
-      {% if user == post.author %}
-      <form action="" method="POST" class="inline">{% csrf_token %}
-        <button type="submit" class="btn">Delete</button>
-      </form>
-      {% endif %}
-      <!-- Post delete form end -->
-      <span class="header-date">{{ post.created_date }}</span>
-    </header>
-
-	  <!--post내부에서 postphoto_set을 loop하며 postphoto.photo.url을 img의 src로 지정 -->
-    <div class="post-image-container">
-
-	    <!-- Swiper container -->
-	    <div class="swiper-container">
-		    <div class="swiper-wrapper">
-					{% for postphoto in post.postphoto_set.all %}
-			    <div class="swiper-slide">
-		        <img src="{{ postphoto.photo.url }}" alt="" class="post-image">
-			    </div>
-			    {% endfor %}
-		    </div>
-	    </div>
-	    <!-- Swiper container end -->
-
-    </div>
-
-
-    <div class="post-bottom-container">
-      <div class="post-content">{{ post.content|linebreaksbr|truncatechars:100 }}</div>
-      <div class="post-like-users">
-        {% if post.like_users.all %}
-          {% for user in post.like_users.all %}
-            <strong>{{ user.username }}</strong>
-            {% if not forloop.last %}<strong>, </strong>{% endif %}
-          {% endfor %}
-          님이 좋아합니다.
-        {% endif %}
-      </div>
-      <div class="post-comments">
-        {% if post.comment_set.all %}
-          {% for comment in post.comment_set.all %}
-            <div class="post-comment">
-              <span class="comment-author">{{ comment.author.username }}</span>
-              <span class="comment-content">{{ comment.content }}</span>
-	            <!-- 삭제를 위한 Form -->
-              {% if user == comment.author %}
-	            <form action="" method="POST">{% csrf_token %}
-		            <button type="submit" class="btn">Delete</button>
-	            </form>
-              {% endif %}
-            </div>
-          {% endfor %}
-        {% endif %}
-      </div>
-      <div class="post-comment-form-container clearfix">
-	      <form action="" method="POST" class="form-like">{% csrf_token %}
-		      <button
-		        type="submit"
-		        class="btn-like
-		          {% if user in post.like_users.all %}
-		            sprite-heart-full
-		          {% else %}
-		            sprite-heart-empty
-		          {% endif %}">
-		      </button>
-	      </form>
-
-	      <form action="" method="POST" class="form-comment">{% csrf_token %}
-          <input
-	          type="text"
-	          placeholder="댓글 달기..."
-	          class="input-comment"
-            name="content">
-	      </form>
-      </div>
-    </div>
-  </article>
+		{% include 'post/include/post.html' with post=post %}
   {% endfor %}
-
 	<a href="" class="btn-add-post">+ Add Post</a>
 </div>
 
@@ -93,7 +12,9 @@
 
 {% block script %}
 <script>
-	var swiper = new Swiper('.swiper-container');
+	$(document).ready(function () {
+		new Swiper('.swiper-container');
+	});
 </script>
 {% endblock %}
 

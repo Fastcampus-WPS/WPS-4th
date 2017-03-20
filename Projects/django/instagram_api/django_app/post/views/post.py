@@ -19,8 +19,9 @@
     5. PostList CBV에 get메서드 작성 및 내부 쿼리를 return
         (Django CBV문서 보면서 진행)
 """
-from django.shortcuts import render
 from django.views import View
+from django.views.generic import DetailView
+from django.views.generic import ListView
 
 from post.models import Post
 
@@ -31,26 +32,16 @@ __all__ = (
 )
 
 
-class PostList(View):
-    """
-    1. 데이터추가
-        Postman으로 Post두개 만들고, 각각의 Post에 PostPhoto를 3개 추가
-    2. post_list.html에서 posts변수를 loop하며 각 post의 postphoto_set.all을 loop
-        postphoto_set을 내부에서 loop하며 내부 loop아이템의 photo.url을 이용해 이미지를 출력
-    """
-    def get(self, request):
-        posts = Post.objects.all()
-        context = {
-            'posts': posts,
-        }
-        return render(request, 'post/post_list.html', context)
+class PostList(ListView):
+    model = Post
+    context_object_name = 'posts'
 
 
-class PostDetail(View):
+class PostDetail(DetailView):
     """
-    하나의 Post object를 리턴해서 받는 뷰 구현
+    DetailView를 상속받아서 구현되도록 해보세요
     """
-    pass
+    model = Post
 
 
 class PostDelete(View):
