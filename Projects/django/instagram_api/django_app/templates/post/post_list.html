@@ -18,9 +18,19 @@
 
 	  <!--post내부에서 postphoto_set을 loop하며 postphoto.photo.url을 img의 src로 지정 -->
     <div class="post-image-container">
-	    {% for postphoto in post.postphoto_set.all %}
-      <img src="{{ postphoto.photo.url }}" alt="" class="post-image">
-	    {% endfor %}
+
+	    <!-- Swiper container -->
+	    <div class="swiper-container">
+		    <div class="swiper-wrapper">
+					{% for postphoto in post.postphoto_set.all %}
+			    <div class="swiper-slide">
+		        <img src="{{ postphoto.photo.url }}" alt="" class="post-image">
+			    </div>
+			    {% endfor %}
+		    </div>
+	    </div>
+	    <!-- Swiper container end -->
+
     </div>
 
 
@@ -79,6 +89,12 @@
 	<a href="" class="btn-add-post">+ Add Post</a>
 </div>
 
+{% endblock %}
+
+{% block script %}
+<script>
+	var swiper = new Swiper('.swiper-container');
+</script>
 {% endblock %}
 
 {#각 post에 연결된 Comment object list를 출력#}
