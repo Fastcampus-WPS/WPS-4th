@@ -1,0 +1,13 @@
+<form action="" method="POST">{% csrf_token %}
+	{% if form.non_field_errors %}
+		{{ form.non_field_errors }}
+	{% endif %}
+
+	{% for field in form %}
+	<div>
+		{{ field.label_tag }}
+		{{ field }}
+	</div>
+	{% endfor %}
+	<button type="submit">Login</button>
+</form>

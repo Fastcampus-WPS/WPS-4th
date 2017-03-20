@@ -6,6 +6,7 @@ __dev*/
 media/
 static_root/
 _Dockerfile*
+**/django_app/static/css/
 
 bower_components/
 

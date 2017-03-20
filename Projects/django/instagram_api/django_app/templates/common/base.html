@@ -1,0 +1,44 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Instagram</title>
+  <link rel="stylesheet" href="{% static 'css/sprites.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/base.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/common.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/header.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/post_list.min.css' %}">
+</head>
+<body>
+  <div id="wrap">
+    <div>
+	    {{ user.username }}
+    </div>
+  	<header class="main-header">
+  		<nav class="header-nav">
+        <span class="nav-group nav-left">
+          <a href="{% url 'post:list' %}" class="logo sprite-logo"></a>
+        </span>
+
+        <span class="nav-group nav-center">
+          <input type="text">
+        </span>
+
+        <span class="nav-group nav-right">
+          <a href="" class="btn-header-nav sprite-explore"></a>
+          <a href="" class="btn-header-nav sprite-activity"></a>
+          <a href="{% url 'member:profile' %}" class="btn-header-nav sprite-profile"></a>
+        </span>
+  		</nav>
+  	</header>
+    <div class="content-container">
+    	{% block content %}
+    	{% endblock %}
+    </div>
+  </div>
+</body>
+</html>
