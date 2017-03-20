@@ -35,6 +35,9 @@ STATICFILES_DIRS = (
 )
 STATIC_URL = '/static/'
 
+# Login redirect
+LOGIN_URL = '/admin/'
+
 # Config files
 CONF_DIR = os.path.join(ROOT_DIR, '.conf-secret')
 CONFIG_FILE_COMMON = os.path.join(CONF_DIR, 'settings_common.json')

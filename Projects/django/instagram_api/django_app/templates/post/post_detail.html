@@ -5,3 +5,11 @@
 {% include 'post/include/post.html' with post=post %}
 </div>
 {% endblock %}
+
+{% block script %}
+<script>
+	$(document).ready(function () {
+		new Swiper('.swiper-container');
+	});
+</script>
+{% endblock %}

@@ -43,8 +43,8 @@
       {% endif %}
     </div>
     <div class="post-comments">
-      {% if post.comment_set.all %}
-        {% for comment in post.comment_set.all %}
+      {% if post.postcomment_set.all %}
+        {% for comment in post.postcomment_set.all %}
           <div class="post-comment">
             <span class="comment-author">{{ comment.author.username }}</span>
             <span class="comment-content">{{ comment.content }}</span>
@@ -71,7 +71,9 @@
 	      </button>
       </form>
 
-      <form action="" method="POST" class="form-comment">{% csrf_token %}
+      <form action="{% url 'post:comment-create' post_pk=post.pk %}?next={{ request.path }}"
+            method="POST"
+            class="form-comment">{% csrf_token %}
         <input
           type="text"
           placeholder="댓글 달기..."
