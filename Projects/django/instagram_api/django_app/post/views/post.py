@@ -19,9 +19,8 @@
     5. PostList CBV에 get메서드 작성 및 내부 쿼리를 return
         (Django CBV문서 보면서 진행)
 """
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
-from django.views import View
+from django.urls import reverse_lazy
+from django.views.generic import DeleteView
 from django.views.generic import DetailView
 from django.views.generic import FormView
 from django.views.generic import ListView
@@ -69,7 +68,7 @@ class PostCreate(FormView):
     """
     template_name = 'post/post_create.html'
     form_class = PostForm
-    success_url = '/post/'
+    success_url = reverse_lazy('post:post-list')
 
     def form_valid(self, form):
         post = Post.objects.create(author=self.request.user)
@@ -81,5 +80,6 @@ class PostCreate(FormView):
         return super().form_valid(form)
 
 
-class PostDelete(View):
-    pass
+class PostDelete(DeleteView):
+    model = Post
+    success_url = reverse_lazy('post:post-list')
