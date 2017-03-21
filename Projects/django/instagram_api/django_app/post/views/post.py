@@ -19,13 +19,14 @@
     5. PostList CBV에 get메서드 작성 및 내부 쿼리를 return
         (Django CBV문서 보면서 진행)
 """
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import DetailView
 from django.views.generic import ListView
 
 from post.forms import PostForm
-from post.models import Post
+from post.models import Post, PostComment, PostPhoto
 
 __all__ = (
     'PostList',
@@ -58,10 +59,6 @@ class PostCreate(View):
     2. 만약 form.cleaned_data['content']가 빈 값이 아니면 PostComment 인스턴스 생성
     3. request.FILES.getlist('photos')를 loop하며 PostPhoto 인스턴스 생성
     4. return redirect('post:post-list')
-
-    **extra
-    5. GET요청시 PostForm을 인자로 넘겨 템플릿에 사용 {{ form }}
-        -> template_name속성 정의 필요
     """
     form_class = PostForm
     template_name = 'post/post_create.html'
@@ -74,9 +71,30 @@ class PostCreate(View):
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
-        print(request.POST)
-        print(request.FILES)
-        pass
+        # 1. 해당 request.user를 author로 하는 Post 인스턴스 생성
+        post = Post.objects.create(author=request.user)
+
+        # 2. 만약 form.cleaned_data['content']가 빈 값이 아니면 PostComment인스턴스 생성
+        #   is_valid()이후
+        form = self.form_class(request.POST, request.FILES)
+        if form.is_valid():
+            content = form.cleaned_data.get('content', '').strip()
+            if content != '':
+                PostComment.objects.create(
+                    post=post,
+                    author=request.user,
+                    content=content
+                )
+
+            # 3. request.FILES.getlist('photos')를 loop하며 PostPhoto 인스턴스 생성
+            for file in request.FILES.getlist('photos'):
+                PostPhoto.objects.create(
+                    post=post,
+                    photo=file
+                )
+            return redirect('post:post-list')
+        else:
+            return HttpResponse(form.errors)
 
 
 class PostDelete(View):
