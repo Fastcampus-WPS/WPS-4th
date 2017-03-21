@@ -5,7 +5,7 @@
   {% for post in posts %}
 		{% include 'post/include/post.html' with post=post %}
   {% endfor %}
-	<a href="" class="btn-add-post">+ Add Post</a>
+	<a href="{% url 'post:post-create' %}" class="btn-add-post">+ Add Post</a>
 </div>
 
 {% endblock %}

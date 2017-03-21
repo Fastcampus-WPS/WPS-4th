@@ -19,15 +19,18 @@
     5. PostList CBV에 get메서드 작성 및 내부 쿼리를 return
         (Django CBV문서 보면서 진행)
 """
+from django.shortcuts import render
 from django.views import View
 from django.views.generic import DetailView
 from django.views.generic import ListView
 
+from post.forms import PostForm
 from post.models import Post
 
 __all__ = (
     'PostList',
     'PostDetail',
+    'PostCreate',
     'PostDelete',
 )
 
@@ -42,6 +45,38 @@ class PostDetail(DetailView):
     DetailView를 상속받아서 구현되도록 해보세요
     """
     model = Post
+
+
+class PostCreate(View):
+    """
+    PostForm을 사용
+        fields
+            content
+            photos
+    POST요청을 받았을 때,
+    1. 해당 request.user를 author로 하는 Post 인스턴스 생성
+    2. 만약 form.cleaned_data['content']가 빈 값이 아니면 PostComment 인스턴스 생성
+    3. request.FILES.getlist('photos')를 loop하며 PostPhoto 인스턴스 생성
+    4. return redirect('post:post-list')
+
+    **extra
+    5. GET요청시 PostForm을 인자로 넘겨 템플릿에 사용 {{ form }}
+        -> template_name속성 정의 필요
+    """
+    form_class = PostForm
+    template_name = 'post/post_create.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        context = {
+            'form': form,
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, *args, **kwargs):
+        print(request.POST)
+        print(request.FILES)
+        pass
 
 
 class PostDelete(View):
