@@ -10,6 +10,10 @@ _Dockerfile*
 
 # bower packages
 bower_components/
+**/app/static/css/
+
+# swp file
+*.swp
 
 # Config folders
 .conf-secret/
