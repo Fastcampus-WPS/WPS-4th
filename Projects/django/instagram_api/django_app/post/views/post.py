@@ -23,6 +23,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import DetailView
+from django.views.generic import FormView
 from django.views.generic import ListView
 
 from post.forms import PostForm
@@ -48,53 +49,36 @@ class PostDetail(DetailView):
     model = Post
 
 
-class PostCreate(View):
+class PostCreate(FormView):
     """
-    PostForm을 사용
-        fields
-            content
-            photos
-    POST요청을 받았을 때,
-    1. 해당 request.user를 author로 하는 Post 인스턴스 생성
-    2. 만약 form.cleaned_data['content']가 빈 값이 아니면 PostComment 인스턴스 생성
-    3. request.FILES.getlist('photos')를 loop하며 PostPhoto 인스턴스 생성
-    4. return redirect('post:post-list')
+    FormView를 상속받아 구현
+
+    attributes
+        template_name
+        form_class
+        success_url
+
+    method
+        form_valid(self, form)
+            request는 self.request로 접근 가능
+            form.cleaned_data는 바로 사용 가능
+            redirect는 정의해줄 필요 없음
+
+    **extra
+    post메서드에 login_required 데코레이터 적용
     """
-    form_class = PostForm
     template_name = 'post/post_create.html'
+    form_class = PostForm
+    success_url = '/post/'
 
-    def get(self, request, *args, **kwargs):
-        form = self.form_class()
-        context = {
-            'form': form,
-        }
-        return render(request, self.template_name, context)
-
-    def post(self, request, *args, **kwargs):
-        # 1. 해당 request.user를 author로 하는 Post 인스턴스 생성
-        post = Post.objects.create(author=request.user)
-
-        # 2. 만약 form.cleaned_data['content']가 빈 값이 아니면 PostComment인스턴스 생성
-        #   is_valid()이후
-        form = self.form_class(request.POST, request.FILES)
-        if form.is_valid():
-            content = form.cleaned_data.get('content', '').strip()
-            if content != '':
-                PostComment.objects.create(
-                    post=post,
-                    author=request.user,
-                    content=content
-                )
-
-            # 3. request.FILES.getlist('photos')를 loop하며 PostPhoto 인스턴스 생성
-            for file in request.FILES.getlist('photos'):
-                PostPhoto.objects.create(
-                    post=post,
-                    photo=file
-                )
-            return redirect('post:post-list')
-        else:
-            return HttpResponse(form.errors)
+    def form_valid(self, form):
+        post = Post.objects.create(author=self.request.user)
+        content = form.cleaned_data.get('content', '').strip()
+        if content != '':
+            PostComment.objects.create(post=post, author=self.request.user, content=content)
+        for file in self.request.FILES.getlist('photos'):
+            PostPhoto.objects.create(post=post, photo=file)
+        return super().form_valid(form)
 
 
 class PostDelete(View):
