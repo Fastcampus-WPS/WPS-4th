@@ -1,0 +1,22 @@
+{
+  "name": "jquery-ajax",
+  "homepage": "https://github.com/LeeHanYeong/Fastcampus-WPS-4th",
+  "authors": [
+    "Lee HanYeong <dev@azelf.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "moment": "momentjs#^2.18.1",
+    "swiper": "^3.4.2"
+  }
+}
