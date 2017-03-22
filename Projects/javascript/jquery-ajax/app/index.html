@@ -1,24 +1,24 @@
 <!doctype html>
 <html lang="ko">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport"
-	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Instagram</title>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Instagram</title>
   <link rel="stylesheet" href="static/css/sprites.min.css">
   <link rel="stylesheet" href="static/css/base.min.css">
   <link rel="stylesheet" href="static/css/common.min.css">
   <link rel="stylesheet" href="static/css/header.min.css">
   <link rel="stylesheet" href="static/css/post_list.min.css">
 
-	<!-- Swiper -->
+  <!-- Swiper -->
   <link rel="stylesheet" href="../bower_components/swiper/dist/css/swiper.min.css">
 </head>
 <body>
   <div id="wrap">
-  	<header class="main-header">
-  		<nav class="header-nav">
+    <header class="main-header">
+      <nav class="header-nav">
         <span class="nav-group nav-left">
           <a href="" class="logo sprite-logo"></a>
         </span>
@@ -32,103 +32,28 @@
           <a href="" class="btn-header-nav sprite-activity"></a>
           <a href="" class="btn-header-nav sprite-profile"></a>
         </span>
-  		</nav>
-  	</header>
+      </nav>
+    </header>
     <div class="content-container">
-			<div class="post-list-container">
+      <div class="post-list-container">
 
-			</div>
+      </div>
     </div>
     <button id="load-post-list">Load PostList</button>
   </div>
   <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="../bower_components/moment/moment.js"></script>
-	<script src="../bower_components/moment/locale/ko.js"></script>
+  <script src="../bower_components/moment/moment.js"></script>
+  <script src="../bower_components/moment/locale/ko.js"></script>
 
   <script src="../bower_components/swiper/dist/js/swiper.jquery.min.js"></script>
+  <!-- Custom Script -->
+  <script src="static/js/dom-utils.js"></script>
+  <script src="static/js/apis.js"></script>
   <script>
-    // load-post-list라는 id를 가진 dom객체에 click이벤트를 할당, click시 loadPostList()를 실행
-    $('#load-post-list').click(function() {
-      loadPostList();
-    });
-    // loadPostList ajax요청의 response data에 'next'값이 있으면 해당 값을 할당해 놓을 변수
-    var next;
-
-    // PostList GET요청 API함수
-    function loadPostList() {
-      // 첫 loadPostList API요청 URL
-      var url = 'http://localhost:8000/api/post/';
-
-      // next값이 있다면 요청 url은 해당값을 사용한다
-      if(next != undefined && next != null) {
-        url = next;
-      }
-      console.log(url);
-      $.ajax(url)
-        .done(function(data) {
-          // ajax요청의 응답에서 next값을 가져와 변수에 할당
-          next = data.next;
-          // 응답의 results를 results의 길이만큼 순회하며
-          for(var i = 0; i < data.results.length; i++) {
-            // 매 loop마다 results[i(인덱스)]의 값을 curPost변수에 할당
-            var curPost = data.results[i];
-            // curPost를 사용해서 addArticle함수를 실행 (post-list-container내부에 append)
-            addArticle(curPost);
-          }
-        })
-        .fail(function(data) {
-          console.log('fail');
-          console.log(data);
-					$('.content-container').append('<div>Fail!</div>');
-        });
-    }
-
-    function addArticle(curPost) {
-      var newDom = $('<article class="post"></article>');
-      newDom.attr('id', 'post-' + curPost.pk);
-
-      // article요소의 header.post-header를 생성
-      newDom.append('<header class="post-header"></header>');
-      var newDomHeader = newDom.find('header.post-header');
-      newDomHeader.append('<span class="header-username"></span>');
-      newDomHeader.append('<form action="" class="inline"></form>');
-      newDomHeader.append('<span class="header-date"></span>');
-
-      newDomHeader.find('span.header-username').text(curPost.author.username);
-      // 문자열이아닌, momentjs를 사용해서 parse -> format한 형태를 대입
-      var day = moment(curPost.created_date);
-      var strDay = moment(day).format('YYYY년 M월 D일');
-      var strDay2 = moment(day).format('lll');
-      newDomHeader.find('span.header-date').text(strDay2);
-
-      // aritcle요소의 post-image-container를 생성
-      newDom.append('<div class="post-image-container"></div>');
-      newDom.find('.post-image-container').append('<div class="swiper-container"></div>');
-      newDom.find('.swiper-container').append('<div class="swiper-wrapper"></div>');
-      var newDomSwiperWrapper = newDom.find('.swiper-wrapper');
-      // curPost.postphoto_set을 loop하며
-      //.swiper-wrapper의 내부에 postphoto.photo값을 사용해 .swiper-slide > img태그를 생성
-      // img의 src속성과 같이 속성을 변화시킬 때는 .text()대신 .attr('속성명', '속성값')을 사용
-      for(var j = 0; j < curPost.postphoto_set.length; j++) {
-        var curPostPhoto = curPost.postphoto_set[j];
-        // PostPhoto하나당 .swiper-slide > img만들고 src값을 PostPhoto의 photo속성으로 대입
-        var newSwiperSlide = $('<div class="swiper-slide"></div>');
-        newSwiperSlide.append('<img src="" alt="" />');
-        newSwiperSlide.find('img').attr('src', curPostPhoto.photo);
-
-        // 만들어진 swiper-slide를 swiper-wrapper내부에 append
-        newDomSwiperWrapper.append(newSwiperSlide);
-      }
-
-      // aritlce요소의 post-bottom-container를 생성
-      newDom.append('<div class="post-bottom-container"></div>');
-      $('.post-list-container').append(newDom);
-
-      // 새로만든 aritlce내부의 .swiper-container에 id값을 추가
-      newDom.find('.swiper-container').attr('id', 'post-swiper-' + curPost.pk);
-      // .swiper-container의 id로 Swiper초기화
-      new Swiper('#post-swiper-' + curPost.pk);
-    }
+  // load-post-list라는 id를 가진 dom객체에 click이벤트를 할당, click시 loadPostList()를 실행
+  $('#load-post-list').click(function() {
+    loadPostList();
+  });
   </script>
 </body>
 </html>
