@@ -47,6 +47,7 @@
 
   <script src="../bower_components/swiper/dist/js/swiper.jquery.min.js"></script>
   <!-- Custom Script -->
+  <script src="static/js/cookie.js"></script>
   <script src="static/js/dom-utils.js"></script>
   <script src="static/js/apis.js"></script>
   <script>
@@ -54,6 +55,8 @@
   $('#load-post-list').click(function() {
     loadPostList();
   });
+  obtainAuthToken('lhy', 'dlgksdud');
+  postCreate();
   </script>
 </body>
 </html>

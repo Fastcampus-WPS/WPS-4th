@@ -28,7 +28,7 @@ function addArticle(curPost) {
     var curPostPhoto = curPost.postphoto_set[j];
     // PostPhoto하나당 .swiper-slide > img만들고 src값을 PostPhoto의 photo속성으로 대입
     var newSwiperSlide = $('<div class="swiper-slide"></div>');
-    newSwiperSlide.append('<img src="" alt="" />');
+    newSwiperSlide.append('<img src="" alt="" class="post-image"/>');
     newSwiperSlide.find('img').attr('src', curPostPhoto.photo);
 
     // 만들어진 swiper-slide를 swiper-wrapper내부에 append
