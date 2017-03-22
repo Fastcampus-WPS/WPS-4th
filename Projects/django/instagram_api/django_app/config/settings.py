@@ -57,6 +57,13 @@ for key, key_dict in config_common.items():
 
 SECRET_KEY = config['django']['secret_key']
 ALLOWED_HOSTS = config['django']['allowed_hosts']
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -67,6 +74,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
 
     'member',
