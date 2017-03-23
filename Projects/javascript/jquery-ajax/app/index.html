@@ -50,13 +50,16 @@
   <script src="static/js/cookie.js"></script>
   <script src="static/js/dom-utils.js"></script>
   <script src="static/js/apis.js"></script>
+  <script src="static/js/api/load-post-list.js"></script>
   <script>
-  // load-post-list라는 id를 가진 dom객체에 click이벤트를 할당, click시 loadPostList()를 실행
-  $('#load-post-list').click(function() {
-    loadPostList();
-  });
-  obtainAuthToken('lhy', 'dlgksdud');
-  postCreate();
+  // 유저 token받아오기
+  // obtainAuthToken('lhy', 'dlgksdud');
+
+  // 초기 PostList로드
+  loadPostList();
+
+
+
   </script>
 </body>
 </html>

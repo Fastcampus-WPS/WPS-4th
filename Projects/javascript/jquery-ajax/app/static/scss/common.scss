@@ -18,3 +18,11 @@
 form.inline {
   display: inline-block;
 }
+.loading {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  border: 1px solid black;
+  padding: 10px;
+  background: white;
+}
