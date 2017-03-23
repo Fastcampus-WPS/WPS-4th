@@ -1,0 +1,24 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "volumes": [
+    {
+      "name": "instagram-api",
+      "host": {
+        "sourcePath": "/var/app/current/django_app"
+      }
+    }
+  ],
+  "containerDefinitions": [
+    {
+      "name": "instagram-api",
+      "essential": true,
+      "memory": 512,
+      "portMappings": [
+        {
+          "hostPort": 80,
+          "containerPort": 4040
+        }
+      ]
+    }
+  ]
+}
