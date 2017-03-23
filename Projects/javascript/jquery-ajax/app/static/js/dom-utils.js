@@ -42,5 +42,7 @@ function addArticle(curPost) {
   // 새로만든 aritlce내부의 .swiper-container에 id값을 추가
   newDom.find('.swiper-container').attr('id', 'post-swiper-' + curPost.pk);
   // .swiper-container의 id로 Swiper초기화
-  new Swiper('#post-swiper-' + curPost.pk);
+  new Swiper('#post-swiper-' + curPost.pk, {
+    autoHeight: true,
+  });
 }
