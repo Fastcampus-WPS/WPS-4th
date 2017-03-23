@@ -5,7 +5,7 @@ __dev*/
 *.sqlite
 media/
 static_root/
-_Dockerfile*
+#_Dockerfile*
 **/django_app/static/css/
 
 # bower packages
