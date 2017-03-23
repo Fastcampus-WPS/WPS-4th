@@ -1,9 +1,6 @@
 FROM        ubuntu:16.04
 MAINTAINER  dev@azelf.com
 
-COPY        . /srv/app
-WORKDIR     /srv/app
-
 RUN         apt-get -y update
 RUN         apt-get -y install python3
 RUN         apt-get -y install python3-pip
