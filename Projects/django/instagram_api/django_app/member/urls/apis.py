@@ -5,4 +5,5 @@ from .. import apis
 urlpatterns = [
     url(r'^token-auth/', authtoken_views.obtain_auth_token),
     url(r'^profile/$', apis.ProfileView.as_view()),
+    url(r'^token-delete/$', apis.DeleteToken.as_view()),
 ]
