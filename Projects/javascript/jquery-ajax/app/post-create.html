@@ -13,12 +13,61 @@
     <button type="submit">Upload!</button>
   </form>
   <script src="../bower_components/jquery/dist/jquery.js"></script>
+  <script src="static/js/cookie.js"></script>
   <script src="static/js/api/post-create.js"></script>
   <script>
     $('#post-upload-form').submit(function(event) {
       event.preventDefault();
       console.log('form submit!');
+
+      postCreate($('#form-photos')[0].files);
     });
+
+    function postCreate(files) {
+      var url = 'http://localhost:8000/api/post/';
+      var token = 'Token ' + getCookie('instagramToken');
+      console.log(token);
+      $.ajax({
+        url: url,
+        method: 'POST',
+        headers: {
+          Authorization: token,
+        }
+      })
+      .done(function(data) {
+        console.log(data);
+        var postPk = data.pk;
+        for(var i = 0; i < files.length; i++) {
+          var curFile = files[i];
+          photoCreate(postPk, curFile);
+        }
+        window.location = '/app';
+      });
+    }
+
+    function photoCreate(postPk, file) {
+      var url = 'http://localhost:8000/api/post/photo/';
+      var token = 'Token ' + getCookie('instagramToken');
+      var formData = new FormData();
+      formData.append('post', postPk);
+      formData.append('photo', file);
+      $.ajax({
+        url: url,
+        method: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+      })
+      .done(function(data) {
+        console.log('done');
+        console.log(data);
+      })
+      .fail(function(data) {
+        console.log('fail');
+        console.log(data);
+      });
+    }
+
   </script>
 </body>
 </html>
