@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Post create</title>
+</head>
+<body>
+  <form id="post-upload-form" action="">
+    <input id="form-content" type="text" placeholder="Comment">
+    <input id="form-photos" type="file" multiple="true">
+    <button type="submit">Upload!</button>
+  </form>
+  <script src="../bower_components/jquery/dist/jquery.js"></script>
+  <script src="static/js/api/post-create.js"></script>
+  <script>
+    $('#post-upload-form').submit(function(event) {
+      event.preventDefault();
+      console.log('form submit!');
+    });
+  </script>
+</body>
+</html>
