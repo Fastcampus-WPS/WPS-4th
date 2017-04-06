@@ -8,15 +8,20 @@ MODE_BASE = 'base'
 MODE_BASE2 = 'base2'
 MODE_DEBUG = 'debug'
 MODE_PRODUCTION = 'production'
+MODE_DOCKERHUB = 'dockerhub'
+
 IMAGE_BASE = 'front-base'
 IMAGE_BASE2 = 'front-base2'
 IMAGE_DEBUG = 'front-debug'
-IMAGE_PRODUCTION = 'front'
+IMAGE_PRODUCTION = 'front-production'
+IMAGE_DOCKERHUB = 'front'
+
 MAINTAINER = 'dev@azelf.com'
 DOCKERFILE_BASE = 'Dockerfile.base'
 DOCKERFILE_BASE2 = 'Dockerfile.base2'
 DOCKERFILE_DEBUG = 'Dockerfile.debug'
-DOCKERFILE_PRODUCTION = 'Dockerfile'
+DOCKERFILE_PRODUCTION = 'Dockerfile.production'
+DOCKERFILE_DOCKERHUB = 'Dockerfile'
 
 # ArgumentParser
 parser = argparse.ArgumentParser(description='Build command')
@@ -33,6 +38,7 @@ dockerfile_template = open(os.path.join(CONF_DOCKER_DIR, '00_template.docker')).
 dockerfile_base = open(os.path.join(CONF_DOCKER_DIR, '01_base.docker')).read()
 dockerfile_base2 = open(os.path.join(CONF_DOCKER_DIR, '01_base2.docker')).read()
 dockerfile_extra = open(os.path.join(CONF_DOCKER_DIR, '02_extra.docker')).read()
+dockerfile_extra_dockerhub = open(os.path.join(CONF_DOCKER_DIR, '03_extra_dockerhub.docker')).read()
 
 if args.mode == MODE_BASE:
     dockerfile = dockerfile_template.format(
@@ -70,6 +76,15 @@ elif args.mode == MODE_PRODUCTION:
     )
     filename = DOCKERFILE_PRODUCTION
     imagename = IMAGE_PRODUCTION
+elif args.mode == MODE_DOCKERHUB:
+    dockerfile = dockerfile_template.format(
+        from_image='azelf/front',
+        maintainer=MAINTAINER,
+        base='',
+        extra=dockerfile_extra_dockerhub,
+    )
+    filename = DOCKERFILE_DOCKERHUB
+    imagename = IMAGE_DOCKERHUB
 else:
     sys.exit('Mode invalid')
 
