@@ -1,4 +1,4 @@
-FROM        {from}
+FROM        {from_image}
 MAINTAINER  {maintainer}
 
 {base}
