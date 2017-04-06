@@ -11,7 +11,6 @@ RUN         apt-get -y update && \
 WORKDIR     /srv/app
 RUN         pip3 install -r requirements.txt && \
             pip3 install uwsgi
-
 COPY        .conf/uwsgi-app.ini /etc/uwsgi/sites/app.ini
 COPY        .conf/nginx-app.conf /etc/nginx/sites-available/app
 COPY        .conf/nginx.conf /etc/nginx/nginx.conf
