@@ -1,4 +1,5 @@
 # Project custom
+front-site
 __dev*/
 .idea/
 *.sqlite3
