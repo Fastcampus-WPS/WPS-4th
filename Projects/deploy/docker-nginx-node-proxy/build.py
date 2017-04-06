@@ -5,13 +5,16 @@ import sys
 
 # Const
 MODE_BASE = 'base'
+MODE_BASE2 = 'base2'
 MODE_DEBUG = 'debug'
 MODE_PRODUCTION = 'production'
 IMAGE_BASE = 'front-base'
+IMAGE_BASE2 = 'front-base2'
 IMAGE_DEBUG = 'front-debug'
 IMAGE_PRODUCTION = 'front'
 MAINTAINER = 'dev@azelf.com'
 DOCKERFILE_BASE = 'Dockerfile.base'
+DOCKERFILE_BASE2 = 'Dockerfile.base2'
 DOCKERFILE_DEBUG = 'Dockerfile.debug'
 DOCKERFILE_PRODUCTION = 'Dockerfile'
 
@@ -28,6 +31,7 @@ CONF_DOCKER_DIR = os.path.join(CONF_DIR, 'docker')
 # Docker conf files
 dockerfile_template = open(os.path.join(CONF_DOCKER_DIR, '00_template.docker')).read()
 dockerfile_base = open(os.path.join(CONF_DOCKER_DIR, '01_base.docker')).read()
+dockerfile_base2 = open(os.path.join(CONF_DOCKER_DIR, '01_base2.docker')).read()
 dockerfile_extra = open(os.path.join(CONF_DOCKER_DIR, '02_extra.docker')).read()
 
 if args.mode == MODE_BASE:
@@ -39,9 +43,18 @@ if args.mode == MODE_BASE:
     )
     filename = DOCKERFILE_BASE
     imagename = IMAGE_BASE
-elif args.mode == MODE_DEBUG:
+elif args.mode == MODE_BASE2:
     dockerfile = dockerfile_template.format(
         from_image=IMAGE_BASE,
+        maintainer=MAINTAINER,
+        base=dockerfile_base2,
+        extra=''
+    )
+    filename = DOCKERFILE_BASE2
+    imagename = IMAGE_BASE2
+elif args.mode == MODE_DEBUG:
+    dockerfile = dockerfile_template.format(
+        from_image=IMAGE_BASE2,
         maintainer=MAINTAINER,
         base='',
         extra=dockerfile_extra

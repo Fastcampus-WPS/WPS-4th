@@ -1,3 +1,8 @@
+COPY        . /srv/app
+WORKDIR     /srv/app/front
+RUN         npm install && \
+            npm run build
+
 COPY        .conf/uwsgi-app.ini /etc/uwsgi/sites/app.ini
 COPY        .conf/nginx-app.conf /etc/nginx/sites-available/app
 COPY        .conf/nginx.conf /etc/nginx/nginx.conf
