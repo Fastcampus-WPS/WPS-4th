@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 boto install
     pip install git+git://github.com/michaelhenry/boto.git@sqs_fixed
+
+celery install
+    pip install git+https://github.com/celery/celery.git@b27c0f143b86989a5f655bcc9592221bbbba0f5f
 """
 import json
 import os
