@@ -3,8 +3,14 @@ RUN         apt-get -y update && \
             apt-get -y install python3 && \
             apt-get -y install python3-pip && \
             apt-get -y install nginx && \
-            apt-get -y install supervisor
+            apt-get -y install supervisor && \
+            apt-get -y install git && \
+            apt-get -y install curl && \
+            apt-get -y install libcurl4-openssl-dev && \
+            apt-get -y install libssl-dev && \
 
 WORKDIR     /srv/app
-RUN         pip3 install -r requirements.txt && \
+RUN         pip3 install git+https://github.com/michaelhenry/boto.git@sqs_fixed && \
+            pip3 install git+https://github.com/celery/celery.git@b27c0f143b86989a5f655bcc9592221bbbba0f5f && \
+            pip3 install -r requirements.txt && \
             pip3 install uwsgi
