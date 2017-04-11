@@ -18,6 +18,7 @@ def make_user_and_login(client):
     )
     return user
 
+
 class ProfileViewTest(TestCase):
     def test_user_not_authenticated(self):
         url_profile = '/member/profile/'

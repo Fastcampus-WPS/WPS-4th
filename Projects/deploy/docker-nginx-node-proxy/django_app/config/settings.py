@@ -43,13 +43,15 @@ for key, key_dict in config_common.items():
 # Celery
 CELERY_BROKER_TRANSPORT = 'sqs'
 CELERY_BROKER_URL = 'sqs://{aws_access_key_id}:{aws_secret_access_key}@'.format(
-    aws_access_key_id=quote(config['aws']['access_key_id']),
-    aws_secret_access_key=quote(config['aws']['secret_access_key']),
+    aws_access_key_id=quote(config['aws']['access_key_id'], safe=''),
+    aws_secret_access_key=quote(config['aws']['secret_access_key'], safe=''),
 )
+print(CELERY_BROKER_URL)
 CELERY_BROKER_TRANSPORT_OPTIONS = {
     'region': 'ap-northeast-2',
 }
 CELERY_RESULT_BACKEND = 'django-db'
+CELERYBEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 
 AUTH_USER_MODEL = 'member.User'
 

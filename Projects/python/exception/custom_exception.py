@@ -1,5 +1,6 @@
 import re
 
+
 class NotMatchedException(Exception):
     def __init__(self, re_pattern=None, source=None):
         # 만약 인자로 주어진 re_pattern객체가 
@@ -41,6 +42,5 @@ else:
     print('  result : {}'.format(m.group()))
 finally:
     print('--end search_from_source--')
-
 
 print('--Program terminated--')

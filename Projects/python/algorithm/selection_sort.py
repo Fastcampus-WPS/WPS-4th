@@ -2,6 +2,7 @@ DEBUG = False
 source = [9, 1, 6, 8, 4, 3, 2, 0, 7, 5]
 length = len(source)
 
+
 def selection_sort():
     # 일단 n-1번째까지 문자열을 순회한다
     # (마지막 문자는 앞의 문자들이 오름차순으로 정렬되므로 정렬이 필요없다)
