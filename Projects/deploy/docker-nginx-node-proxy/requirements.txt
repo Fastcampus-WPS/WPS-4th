@@ -1,2 +1,10 @@
+amqp==2.1.4
+billiard==3.5.0.2
+boto==2.46.1
+celery==4.0.2
 Django==1.11
+django-celery-results==1.0.1
+kombu==4.0.2
+pycurl==7.43.0
 pytz==2017.2
+vine==1.1.3
