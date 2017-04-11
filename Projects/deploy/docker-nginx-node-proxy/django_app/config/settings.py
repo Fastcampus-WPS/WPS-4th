@@ -9,13 +9,39 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
-
+import json
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-AUTH_USER_MODEL = 'member.User'
+ROOT_PATH = os.path.dirname(BASE_DIR)
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+CONF_PATH = os.path.join(ROOT_PATH, '.conf-secret')
+CONFIG_FILE_COMMON = os.path.join(CONF_PATH, 'settings_common.json')
+CONFIG_FILE = os.path.join(CONF_PATH, 'settings_local.json')
+config_common = json.loads(open(CONFIG_FILE_COMMON).read())
+config = json.loads(open(CONFIG_FILE).read())
 
+# common과 현재 사용설정 (local또는 deploy)를 합쳐줌
+for key, key_dict in config_common.items():
+    if not config.get(key):
+        config[key] = {}
+    for inner_key, inner_key_dict in key_dict.items():
+        config[key][inner_key] = inner_key_dict
+
+
+# Celery
+CELERY_BROKER_TRANSPORT = 'sqs'
+CELERY_BROKER_URL = 'sqs://{aws_access_key_id}:{aws_secret_access_key}@'.format(
+    aws_access_key_id=config['aws']['access_key_id'],
+    aws_secret_access_key=config['aws']['secret_access_key'],
+)
+CELERY_BROKER_TRANSPORT_OPTIONS = {
+    'region': 'ap-northeast-2',
+}
+
+AUTH_USER_MODEL = 'member.User'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
