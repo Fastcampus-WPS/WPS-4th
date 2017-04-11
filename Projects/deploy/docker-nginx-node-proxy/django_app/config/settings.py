@@ -17,6 +17,8 @@ import json
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from urllib.parse import quote
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT_PATH = os.path.dirname(BASE_DIR)
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
@@ -38,8 +40,8 @@ for key, key_dict in config_common.items():
 # Celery
 CELERY_BROKER_TRANSPORT = 'sqs'
 CELERY_BROKER_URL = 'sqs://{aws_access_key_id}:{aws_secret_access_key}@'.format(
-    aws_access_key_id=config['aws']['access_key_id'],
-    aws_secret_access_key=config['aws']['secret_access_key'],
+    aws_access_key_id=quote(config['aws']['access_key_id']),
+    aws_secret_access_key=quote(config['aws']['secret_access_key']),
 )
 CELERY_BROKER_TRANSPORT_OPTIONS = {
     'region': 'ap-northeast-2',
