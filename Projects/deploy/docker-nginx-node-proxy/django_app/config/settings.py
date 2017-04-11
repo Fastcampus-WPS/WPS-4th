@@ -46,6 +46,7 @@ CELERY_BROKER_URL = 'sqs://{aws_access_key_id}:{aws_secret_access_key}@'.format(
 CELERY_BROKER_TRANSPORT_OPTIONS = {
     'region': 'ap-northeast-2',
 }
+CELERY_RESULT_BACKEND = 'django-db'
 
 AUTH_USER_MODEL = 'member.User'
 
@@ -74,6 +75,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django_celery_results',
+    'django_celery_beat',
 
     'member',
 ]

@@ -9,5 +9,5 @@ from member.models import CeleryTest
 @app.task
 def celery_test():
     request_at = timezone.now()
-    time.sleep(10)
+    time.sleep(1)
     CeleryTest.objects.create(request_at=request_at)
